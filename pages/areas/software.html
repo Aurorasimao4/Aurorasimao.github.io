@@ -7,8 +7,210 @@
     <link rel="stylesheet" href="../../styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ── Software page — tema rosa principal ── */
+        .hero.page-hero {
+            background:
+                radial-gradient(circle at top right, rgba(251,191,36,0.22), transparent 45%),
+                linear-gradient(135deg, #500724 0%, #be185d 50%, #ec4899 100%);
+        }
+
+        .sw-page .section-title::after {
+            background: linear-gradient(90deg, #ec4899, #fbbf24);
+        }
+        .sw-page .page-subnav a       { background: #fce7f3; color: #be185d; }
+        .sw-page .page-subnav a:hover { background: #ec4899; color: white; }
+
+        /* ── 42 pillars ── */
+        .sw-school { padding: 100px 0; background: #f8fafc; }
+
+        .school-pillars {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 0;
+        }
+
+        .pillar-card {
+            background: white;
+            border-radius: 18px;
+            padding: 2rem;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            border-top: 3px solid #ec4899;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .pillar-card:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(0,0,0,0.11); }
+
+        .pillar-icon {
+            width: 50px; height: 50px;
+            background: #fce7f3; color: #ec4899;
+            border-radius: 13px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+        }
+        .pillar-card h3 { font-size: 1.05rem; font-weight: 700; color: #1f2937; margin: 0; }
+        .pillar-card p  { font-size: 0.88rem; color: #6b7280; line-height: 1.65; margin: 0; }
+
+        /* ── Project cards — feature layout ── */
+        .sw-project {
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 10px 36px rgba(0,0,0,0.09);
+            margin-bottom: 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            transition: box-shadow 0.3s ease;
+        }
+        .sw-project:hover { box-shadow: 0 18px 50px rgba(0,0,0,0.13); }
+        .sw-project:nth-child(even) { direction: rtl; }
+        .sw-project:nth-child(even) > * { direction: ltr; }
+
+        .sw-visual {
+            padding: 2.5rem 2rem;
+            display: flex; flex-direction: column;
+            justify-content: center; gap: 1.25rem;
+            position: relative; overflow: hidden;
+        }
+
+        .sw-v-arctic  { background: linear-gradient(135deg, #0a0f0d 0%, #065f46 60%, #10b981 100%); }
+        .sw-v-hydro   { background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 60%, #38bdf8 100%); }
+        .sw-v-seeds   { background: linear-gradient(135deg, #14532d 0%, #15803d 60%, #4ade80 100%); }
+        .sw-v-42      { background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 60%, #818cf8 100%); }
+
+        .sw-visual h2 { font-size: 1.65rem; font-weight: 800; color: white; line-height: 1.2; margin: 0; }
+        .sw-visual p  { font-size: 0.88rem; color: rgba(255,255,255,0.82); line-height: 1.65; margin: 0; }
+
+        .sw-badge {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(255,255,255,0.16);
+            border: 1px solid rgba(255,255,255,0.28);
+            color: white; font-size: 0.7rem; font-weight: 700;
+            padding: 0.28rem 0.75rem; border-radius: 50px;
+            text-transform: uppercase; letter-spacing: 0.06em;
+            width: fit-content;
+        }
+
+        .sw-stats {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem;
+        }
+        .sw-stat {
+            background: rgba(255,255,255,0.13);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 11px; padding: 0.65rem 0.8rem;
+        }
+        .sw-stat strong { display: block; font-size: 1.1rem; color: white; font-weight: 700; line-height: 1; margin-bottom: 0.2rem; }
+        .sw-stat span   { font-size: 0.68rem; color: rgba(255,255,255,0.7); }
+
+        .sw-deco {
+            position: absolute; bottom: -22px; right: -22px;
+            font-size: 8rem; color: rgba(255,255,255,0.05); pointer-events: none;
+        }
+
+        /* right content */
+        .sw-content { padding: 2.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+
+        .sw-label {
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; color: #ec4899; margin-bottom: 0.3rem;
+        }
+        .sw-label.blue   { color: #0369a1; }
+        .sw-label.green  { color: #15803d; }
+        .sw-label.indigo { color: #4338ca; }
+
+        .sw-content h3 { font-size: 1.05rem; font-weight: 700; color: #1f2937; margin: 0; }
+        .sw-content p  { font-size: 0.88rem; color: #6b7280; line-height: 1.7; margin: 0; }
+
+        .feat-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+        .feat-list li {
+            display: flex; gap: 0.55rem; align-items: flex-start;
+            font-size: 0.85rem; color: #374151;
+        }
+        .feat-list li i { font-size: 0.65rem; flex-shrink: 0; margin-top: 0.35rem; }
+        .feat-list li i.pink   { color: #ec4899; }
+        .feat-list li i.blue   { color: #0369a1; }
+        .feat-list li i.green  { color: #15803d; }
+        .feat-list li i.indigo { color: #4338ca; }
+
+        .tag-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+        .tag-row span {
+            font-size: 0.74rem; font-weight: 600;
+            padding: 0.25rem 0.7rem; border-radius: 50px;
+        }
+        .tag-pink   { background: #fce7f3; color: #be185d; }
+        .tag-blue   { background: #e0f2fe; color: #0369a1; }
+        .tag-green  { background: #dcfce7; color: #14532d; }
+        .tag-indigo { background: #e0e7ff; color: #3730a3; }
+        .tag-gray   { background: #f3f4f6; color: #374151; }
+
+        .sw-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+        .sw-links a {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.5rem 1rem; border-radius: 50px;
+            font-size: 0.82rem; font-weight: 600;
+            text-decoration: none; transition: all 0.25s ease;
+        }
+        .link-gh {
+            background: #1f2937; color: white;
+        }
+        .link-gh:hover { background: #111827; transform: translateY(-2px); }
+        .link-demo {
+            background: #fce7f3; color: #be185d;
+        }
+        .link-demo:hover { background: #ec4899; color: white; transform: translateY(-2px); }
+
+        /* ── Stack section ── */
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        /* ── Approach cards ── */
+        .impact-icon {
+            width: 48px; height: 48px;
+            background: #fce7f3; color: #ec4899;
+            border-radius: 13px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; margin-bottom: 0.75rem;
+        }
+
+        /* ── CTA bottom ── */
+        .sw-cta-section {
+            background: linear-gradient(135deg, #500724 0%, #be185d 50%, #ec4899 100%);
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+        }
+        .sw-cta-section h2 { font-size: 2.4rem; font-weight: 700; margin-bottom: 1rem; }
+        .sw-cta-section p  { font-size: 1.05rem; opacity: 0.85; max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.7; }
+
+        .sw-cta-stats {
+            display: flex; justify-content: center; gap: 2.5rem;
+            flex-wrap: wrap; margin-top: 3rem;
+        }
+        .sw-stat-item { text-align: center; }
+        .sw-stat-item span { display: block; font-size: 2.5rem; font-weight: 800; color: #fbbf24; line-height: 1; }
+        .sw-stat-item small { font-size: 0.78rem; opacity: 0.8; line-height: 1.4; }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .sw-project        { grid-template-columns: 1fr; }
+            .sw-project:nth-child(even) { direction: ltr; }
+            .sw-visual         { padding: 2rem; }
+            .school-pillars    { grid-template-columns: 1fr; }
+            .stack-grid        { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .sw-stats { grid-template-columns: 1fr 1fr; }
+            .school-pillars { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-<body>
+<body class="sw-page">
 
     <header class="header">
         <nav class="nav">
@@ -22,26 +224,26 @@
         </nav>
     </header>
 
-    <!-- ── HERO ───────────────────────────────────────────── -->
+    <!-- ── HERO ─────────────────────────────────────────── -->
     <section class="hero page-hero" id="home">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow"><i class="fas fa-laptop-code"></i> Área de Atuação</p>
+                <p class="hero-eyebrow"><i class="fas fa-laptop-code"></i> &nbsp;Engenharia de Software</p>
                 <h1>Software<br><span class="highlight">Engineering</span></h1>
                 <p class="hero-bio">
-                    Formada pela <strong>Escola 42 Luanda</strong> — uma das metodologias de ensino de engenharia de software mais exigentes do mundo. Sem professores, sem aulas: aprendizagem 100% baseada em projectos e revisão por pares. O resultado é uma engenheira que sabe aprender sozinha, depurar sob pressão e entregar código que funciona.
+                    Formada pela <strong>Escola 42 Luanda</strong> — uma das metodologias de ensino mais exigentes do mundo. Sem professores, sem aulas: aprendizagem 100% baseada em projectos e revisão por pares. O resultado é uma engenheira que sabe aprender sozinha, depurar sob pressão e entregar código que funciona.
                 </p>
                 <div class="hero-tags">
                     <span><i class="fas fa-terminal"></i> C / C++</span>
                     <span><i class="fab fa-js"></i> JavaScript</span>
-                    <span><i class="fab fa-react"></i> React</span>
+                    <span><i class="fab fa-react"></i> React / Next.js</span>
                     <span><i class="fab fa-node-js"></i> Node.js</span>
                     <span><i class="fab fa-git-alt"></i> Git</span>
                     <span><i class="fab fa-linux"></i> Linux</span>
                 </div>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">Ver Projectos</a>
-                    <a href="https://github.com/Aurorasimao" class="btn btn-secondary" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://github.com/Aurorasimao4" class="btn btn-secondary" target="_blank"><i class="fab fa-github"></i> GitHub</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -60,7 +262,7 @@
         </div>
     </section>
 
-    <!-- ── SUBNAV ──────────────────────────────────────────── -->
+    <!-- ── SUBNAV ─────────────────────────────────────── -->
     <nav class="page-subnav">
         <div class="container">
             <ul>
@@ -72,28 +274,28 @@
         </div>
     </nav>
 
-    <!-- ── ESCOLA 42 ───────────────────────────────────────── -->
+    <!-- ── ESCOLA 42 ──────────────────────────────────── -->
     <section class="sw-school reveal" id="school42">
         <div class="container">
             <h2 class="section-title">Formada pela 42 Luanda</h2>
             <p class="section-lead">A 42 é uma escola de engenharia de software sem professores, sem aulas e sem hierarquia. Tudo é aprendido através de projectos práticos e avaliação entre pares — o que desenvolve não só competências técnicas, mas autonomia, pensamento crítico e capacidade de colaboração real.</p>
             <div class="school-pillars">
-                <div class="pillar-card reveal">
+                <div class="pillar-card">
                     <div class="pillar-icon"><i class="fas fa-brain"></i></div>
                     <h3>Aprendizagem autónoma</h3>
                     <p>Sem professores. Cada problema é resolvido com documentação, pesquisa e persistência — exactamente como no mundo real.</p>
                 </div>
-                <div class="pillar-card reveal">
+                <div class="pillar-card">
                     <div class="pillar-icon"><i class="fas fa-users"></i></div>
                     <h3>Revisão por pares</h3>
-                    <p>Todo o código é avaliado por outros estudantes. Aprende-se a defender decisões técnicas, a receber crítica e a rever o trabalho dos outros com rigor.</p>
+                    <p>Todo o código é avaliado por outros estudantes. Aprende-se a defender decisões técnicas, receber crítica construtiva e rever o trabalho dos outros com rigor.</p>
                 </div>
-                <div class="pillar-card reveal">
+                <div class="pillar-card">
                     <div class="pillar-icon"><i class="fas fa-layer-group"></i></div>
                     <h3>Base sólida em C</h3>
-                    <p>O currículo começa pelo mais baixo nível: gestão de memória, ponteiros, estruturas de dados e algoritmos em C puro — sem abstrações que escondam o que realmente acontece.</p>
+                    <p>O currículo começa pelo nível mais baixo: gestão de memória, ponteiros, estruturas de dados e algoritmos em C puro — sem abstrações que escondam o que realmente acontece.</p>
                 </div>
-                <div class="pillar-card reveal">
+                <div class="pillar-card">
                     <div class="pillar-icon"><i class="fas fa-rocket"></i></div>
                     <h3>Cultura de entrega</h3>
                     <p>Deadlines reais, projectos que ou passam nos testes ou não passam. Zero tolerância para código que "mais ou menos funciona".</p>
@@ -102,184 +304,287 @@
         </div>
     </section>
 
-    <!-- ── PROJECTOS ───────────────────────────────────────── -->
-    <section class="projects" id="projects">
+    <!-- ── PROJECTOS ──────────────────────────────────── -->
+    <section class="projects reveal" id="projects" style="background:#f8fafc;">
         <div class="container">
             <h2 class="section-title">Projectos</h2>
-            <p class="section-lead">Projectos reais com impacto real — desde fundamentos de sistemas em C até aplicações web com propósito social.</p>
-            <div class="projects-grid">
+            <p class="section-lead">Desde fundamentos de sistemas em C até plataformas web completas com IA integrada — projectos reais, com propósito real.</p>
 
-                <!-- Hydrosync -->
-                <div class="project-card">
-                    <div class="project-image sw-img-hydro">
-                        <i class="fas fa-water"></i>
-                        <span class="project-area-label">Liderança · Web</span>
+            <!-- ── ARCTICCARE ── -->
+            <div class="sw-project">
+                <div class="sw-visual sw-v-arctic">
+                    <span class="sw-badge"><i class="fas fa-star"></i> Projecto Destaque</span>
+                    <h2>ArcticCare</h2>
+                    <p>Plataforma colaborativa de ciência cidadã para monitoramento ambiental e climático — com IA integrada, geolocalização e gamificação.</p>
+                    <div class="sw-stats">
+                        <div class="sw-stat"><strong>15+</strong><span>Páginas/rotas</span></div>
+                        <div class="sw-stat"><strong>IA</strong><span>Chat climático</span></div>
+                        <div class="sw-stat"><strong>20+</strong><span>Badges sistema</span></div>
+                        <div class="sw-stat"><strong>Next.js</strong><span>App Router</span></div>
                     </div>
-                    <div class="project-content">
-                        <h3>Hydrosync</h3>
-                        <p>Plataforma de gestão e visualização de dados hídricos, criada para facilitar o acompanhamento e a tomada de decisão em projectos de acesso à água.</p>
-                        <ul class="project-details">
-                            <li>Arquitectura e desenvolvimento full stack do zero</li>
-                            <li>Interface clara para leitura de dados em tempo real</li>
-                            <li>Foco em usabilidade para contextos com recursos limitados</li>
+                    <i class="fas fa-globe sw-deco"></i>
+                </div>
+                <div class="sw-content">
+                    <div>
+                        <p class="sw-label">Sobre o projecto</p>
+                        <p>Plataforma de ciência cidadã que conecta comunidades, investigadores e autoridades para monitorizar e combater problemas ambientais. Os utilizadores reportam ocorrências geolocalizadas, interagem com um assistente IA climático e ganham pontos e badges por contribuição.</p>
+                    </div>
+                    <div>
+                        <p class="sw-label">Funcionalidades principais</p>
+                        <ul class="feat-list">
+                            <li><i class="fas fa-circle pink"></i> Mapa interativo de ocorrências com OpenStreetMap e geolocalização em tempo real</li>
+                            <li><i class="fas fa-circle pink"></i> Chat IA para análises climáticas — queimadas, enchentes, qualidade do ar</li>
+                            <li><i class="fas fa-circle pink"></i> Sistema de gamificação completo: 5 níveis, 20+ badges, ranking e quiz ambiental</li>
+                            <li><i class="fas fa-circle pink"></i> Portal institucional com métricas, KPIs e relatórios exportáveis</li>
+                            <li><i class="fas fa-circle pink"></i> Comunidades temáticas com feed de actividades em tempo real</li>
+                            <li><i class="fas fa-circle pink"></i> Widget de clima integrado com Open-Meteo API</li>
                         </ul>
-                        <div class="project-tech">
-                            <span>JavaScript</span><span>HTML/CSS</span><span>Git</span>
+                    </div>
+                    <div>
+                        <p class="sw-label">Stack técnico</p>
+                        <div class="tag-row">
+                            <span class="tag-gray">Next.js 16</span>
+                            <span class="tag-blue">TypeScript 5.3</span>
+                            <span class="tag-green">Tailwind CSS</span>
+                            <span class="tag-green">Leaflet + OSM</span>
+                            <span class="tag-gray">Lucide React</span>
+                            <span class="tag-blue">Open-Meteo API</span>
+                            <span class="tag-gray">Nominatim API</span>
                         </div>
-                        <div class="project-links">
-                            <a href="https://github.com/Aurorasimao" class="btn-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                        </div>
+                    </div>
+                    <div class="sw-links">
+                        <a href="https://github.com/Aurorasimao4/ArcticCare" class="link-gh" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
                     </div>
                 </div>
-
-                <!-- Angoseeds -->
-                <div class="project-card">
-                    <div class="project-image sw-img-seeds">
-                        <i class="fas fa-seedling"></i>
-                        <span class="project-area-label">Liderança · Impacto Social</span>
-                    </div>
-                    <div class="project-content">
-                        <h3>Angoseeds</h3>
-                        <p>Plataforma digital de apoio a comunidades agrícolas em Angola, com foco em organização de conteúdo, divulgação de recursos e comunicação acessível.</p>
-                        <ul class="project-details">
-                            <li>Criação e liderança do projecto do início ao fim</li>
-                            <li>Estrutura de conteúdo pensada para utilizadores com baixa literacia digital</li>
-                            <li>Desenvolvimento e manutenção contínua</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span>JavaScript</span><span>HTML/CSS</span><span>Git</span><span>UX</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/Aurorasimao" class="btn-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 42 Core -->
-                <div class="project-card">
-                    <div class="project-image sw-img-42">
-                        <i class="fas fa-terminal"></i>
-                        <span class="project-area-label">42 Luanda · C</span>
-                    </div>
-                    <div class="project-content">
-                        <h3>Projectos do Currículo 42</h3>
-                        <p>Série de projectos práticos em C que constroem, camada a camada, uma compreensão profunda de como o software realmente funciona.</p>
-                        <ul class="project-details">
-                            <li>Reimplementação de funções da libc do zero (sem bibliotecas externas)</li>
-                            <li>Gestão manual de memória, ponteiros e alocação dinâmica</li>
-                            <li>Algoritmos e estruturas de dados implementados a partir dos fundamentos</li>
-                            <li>Todo o código avaliado e aprovado por revisão de pares</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span>C</span><span>Linux</span><span>Makefile</span><span>Norminette</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/Aurorasimao" class="btn-link" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
+
+            <!-- ── HYDROSYNC ── -->
+            <div class="sw-project">
+                <div class="sw-visual sw-v-hydro">
+                    <span class="sw-badge"><i class="fas fa-water"></i> Web App</span>
+                    <h2>Hydrosync</h2>
+                    <p>Sistema de irrigação parametrizada, desenvolvida com o objectivo de ajudar a combater os problemas enfrentados durante a irrigação, a utilização descontrola e o desperdício excessivo de água.</p>
+                    <div class="sw-stats">
+                        <div class="sw-stat"><strong>Full</strong><span>Stack</span></div>
+                        <div class="sw-stat"><strong>UX</strong><span>Data-driven</span></div>
+                    </div>
+                    <i class="fas fa-water sw-deco"></i>
+                </div>
+                <div class="sw-content">
+                    <div>
+                        <p class="sw-label blue">Sobre o projecto</p>
+                        <p>Aplicação web criada de raiz para gestão e visualização de dados hídricos, com interface clara orientada para tomada de decisão em contextos com recursos limitados.</p>
+                    </div>
+                    <div>
+                        <p class="sw-label blue">Funcionalidades</p>
+                        <ul class="feat-list">
+                            <li><i class="fas fa-circle blue"></i> Arquitectura e desenvolvimento full stack do zero</li>
+                            <li><i class="fas fa-circle blue"></i> Interface clara para leitura de dados operacionais</li>
+                            <li><i class="fas fa-circle blue"></i> Foco em usabilidade para contextos com conectividade limitada</li>
+                            <li><i class="fas fa-circle blue"></i> Desenvolvimento e manutenção contínua</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="sw-label blue">Stack técnico</p>
+                        <div class="tag-row">
+                            <span class="tag-blue">JavaScript</span>
+                            <span class="tag-gray">HTML5 / CSS3</span>
+                            <span class="tag-gray">Git</span>
+                        </div>
+                    </div>
+                    <div class="sw-links">
+                        <a href="https://github.com/Aurorasimao4" class="link-gh" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── ANGOSEEDS ── -->
+            <div class="sw-project">
+                <div class="sw-visual sw-v-seeds">
+                    <span class="sw-badge"><i class="fas fa-seedling"></i> Marketplace · Impacto Social</span>
+                    <h2>Angoseeds</h2>
+                    <p>Marketplace agrícola digital que conecta fornecedores, compradores e agricultores para transformar o comércio agrícola em Angola.</p>
+                    <div class="sw-stats">
+                        <div class="sw-stat"><strong>5+</strong><span>Módulos</span></div>
+                        <div class="sw-stat"><strong>Next.js</strong><span>+ TypeScript</span></div>
+                        <div class="sw-stat"><strong>500+</strong><span>Agricultores alvo</span></div>
+                        <div class="sw-stat"><strong>PM</strong><span>+ Dev</span></div>
+                    </div>
+                    <i class="fas fa-seedling sw-deco"></i>
+                </div>
+                <div class="sw-content">
+                    <div>
+                        <p class="sw-label green">Sobre o projecto</p>
+                        <p>Plataforma completa com marketplace de produtos agrícolas, sistema de negociações em tempo real, módulo de doações para reduzir desperdício alimentar e fluxo de pagamento integrado.</p>
+                    </div>
+                    <div>
+                        <p class="sw-label green">Funcionalidades desenvolvidas</p>
+                        <ul class="feat-list">
+                            <li><i class="fas fa-circle green"></i> Catálogo de produtos com geolocalização — "produtos perto de si"</li>
+                            <li><i class="fas fa-circle green"></i> Sistema de negociações com mensagens em tempo real</li>
+                            <li><i class="fas fa-circle green"></i> Módulo de doações com tracking de progresso e organizações</li>
+                            <li><i class="fas fa-circle green"></i> Pagamento integrado por negociação</li>
+                            <li><i class="fas fa-circle green"></i> Autenticação, perfis de utilizador e painel de vendedor</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="sw-label green">Stack técnico</p>
+                        <div class="tag-row">
+                            <span class="tag-green">Next.js</span>
+                            <span class="tag-green">TypeScript</span>
+                            <span class="tag-green">Tailwind CSS</span>
+                            <span class="tag-green">Radix UI</span>
+                            <span class="tag-green">Recharts</span>
+                            <span class="tag-green">Vercel</span>
+                        </div>
+                    </div>
+                    <div class="sw-links">
+                        <a href="https://github.com/Aurorasimao4" class="link-gh" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 42 CORE ── -->
+            <div class="sw-project">
+                <div class="sw-visual sw-v-42">
+                    <span class="sw-badge"><i class="fas fa-terminal"></i> 42 Luanda · Currículo</span>
+                    <h2>Projectos<br>do Currículo 42</h2>
+                    <p>Série de projectos práticos em C que constroem, camada a camada, uma compreensão profunda de como o software realmente funciona.</p>
+                    <div class="sw-stats">
+                        <div class="sw-stat"><strong>C</strong><span>Linguagem base</span></div>
+                        <div class="sw-stat"><strong>0</strong><span>Bibliotecas externas</span></div>
+                        <div class="sw-stat"><strong>Peer</strong><span>Revisão por pares</span></div>
+                        <div class="sw-stat"><strong>42</strong><span>Metodologia</span></div>
+                    </div>
+                    <i class="fas fa-terminal sw-deco"></i>
+                </div>
+                <div class="sw-content">
+                    <div>
+                        <p class="sw-label indigo">Sobre o currículo</p>
+                        <p>Os projectos da 42 não ensinam frameworks — ensinam como o software funciona por dentro. Gestão manual de memória, reimplementação de funções da libc, algoritmos a partir dos fundamentos. Cada projecto é aprovado ou reprovado em revisão de pares.</p>
+                    </div>
+                    <div>
+                        <p class="sw-label indigo">O que foi desenvolvido</p>
+                        <ul class="feat-list">
+                            <li><i class="fas fa-circle indigo"></i> <strong>libft</strong> — reimplementação completa das funções da libc em C puro, sem bibliotecas externas</li>
+                            <li><i class="fas fa-circle indigo"></i> <strong>ft_printf</strong> — implementação do printf com suporte a múltiplos formatos e flags</li>
+                            <li><i class="fas fa-circle indigo"></i> <strong>get_next_line</strong> — leitura linha a linha de ficheiros com gestão dinâmica de memória</li>
+                            <li><i class="fas fa-circle indigo"></i> Gestão manual de memória, ponteiros e alocação dinâmica</li>
+                            <li><i class="fas fa-circle indigo"></i> Todo o código avaliado e aprovado por revisão de pares</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="sw-label indigo">Tecnologias e ferramentas</p>
+                        <div class="tag-row">
+                            <span class="tag-indigo">C</span>
+                            <span class="tag-gray">Linux</span>
+                            <span class="tag-gray">Makefile</span>
+                            <span class="tag-gray">Norminette</span>
+                            <span class="tag-gray">Valgrind</span>
+                            <span class="tag-gray">Shell</span>
+                        </div>
+                    </div>
+                    <div class="sw-links">
+                        <a href="https://github.com/Aurorasimao4" class="link-gh" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- ── STACK ───────────────────────────────────────────── -->
-    <section class="about" id="skills">
+    <!-- ── STACK ──────────────────────────────────────── -->
+    <section class="about reveal" id="skills">
         <div class="container">
             <h2 class="section-title">Stack &amp; Competências</h2>
             <div class="stack-grid">
-
                 <div class="skill-category">
-                    <h3><i class="fas fa-microchip"></i> Sistemas &amp; Fundamentos</h3>
+                    <h3 style="color:#ec4899;"><i class="fas fa-microchip"></i> Sistemas &amp; Fundamentos</h3>
                     <ul>
                         <li>C — gestão de memória, ponteiros, structs</li>
                         <li>C++ — POO, templates, STL</li>
                         <li>Linux — linha de comandos, processos, ficheiros</li>
                         <li>Makefile — automação de builds</li>
                         <li>Algoritmos &amp; estruturas de dados</li>
+                        <li>Valgrind — detecção de memory leaks</li>
                     </ul>
                 </div>
-
                 <div class="skill-category">
-                    <h3><i class="fas fa-globe"></i> Web &amp; Frontend</h3>
+                    <h3 style="color:#ec4899;"><i class="fas fa-globe"></i> Web &amp; Frontend</h3>
                     <ul>
                         <li>HTML5 / CSS3</li>
-                        <li>JavaScript (ES6+)</li>
+                        <li>JavaScript (ES6+) / TypeScript</li>
                         <li>React</li>
-                        <li>Next.js</li>
+                        <li>Next.js 16 (App Router)</li>
+                        <li>Tailwind CSS</li>
                         <li>Dart / Flutter (mobile)</li>
                     </ul>
                 </div>
-
                 <div class="skill-category">
-                    <h3><i class="fas fa-server"></i> Backend &amp; Ferramentas</h3>
+                    <h3 style="color:#ec4899;"><i class="fas fa-server"></i> Backend &amp; Ferramentas</h3>
                     <ul>
                         <li>Node.js</li>
-                        <li>Git &amp; GitHub</li>
                         <li>REST APIs</li>
-                        <li>Resolução de problemas (debugging)</li>
-                        <li>Documentação técnica</li>
+                        <li>Git &amp; GitHub</li>
+                        <li>Vercel — deploy e CI/CD</li>
+                        <li>Leaflet + OpenStreetMap</li>
+                        <li>Integração com APIs externas (clima, geo)</li>
                     </ul>
                 </div>
-
                 <div class="skill-category">
-                    <h3><i class="fas fa-users-cog"></i> Soft Skills Técnicas</h3>
+                    <h3 style="color:#ec4899;"><i class="fas fa-users-cog"></i> Soft Skills Técnicas</h3>
                     <ul>
-                        <li>Code review — dar e receber</li>
-                        <li>Leitura de documentação complexa</li>
-                        <li>Aprendizagem autónoma</li>
+                        <li>Code review — dar e receber com rigor</li>
+                        <li>Leitura de documentação técnica complexa</li>
+                        <li>Aprendizagem autónoma (metodologia 42)</li>
                         <li>Trabalho colaborativo em equipa técnica</li>
                         <li>Pensamento analítico e atenção ao detalhe</li>
+                        <li>Debugging sistemático sob pressão</li>
                     </ul>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- ── ABORDAGEM ───────────────────────────────────────── -->
+    <!-- ── ABORDAGEM ──────────────────────────────────── -->
     <section class="experience reveal" id="approach">
         <div class="container">
             <h2 class="section-title">A minha abordagem</h2>
             <p class="section-lead">O background em Oil &amp; Gas, NDT e Gestão de Projectos não é um desvio — é um diferencial. Venho de ambientes onde erros têm consequências reais, onde documentação importa e onde "funciona na minha máquina" não é resposta.</p>
             <div class="impact-grid">
-                <div class="impact-card reveal">
+                <div class="impact-card">
                     <div class="impact-icon"><i class="fas fa-shield-alt"></i></div>
                     <h3>Rigor operacional</h3>
                     <p>Formada numa indústria onde segurança e precisão são inegociáveis. Isso traduz-se em código cuidado, testado e documentado.</p>
                 </div>
-                <div class="impact-card reveal">
+                <div class="impact-card">
                     <div class="impact-icon"><i class="fas fa-puzzle-piece"></i></div>
                     <h3>Visão de sistemas</h3>
-                    <p>Experiência em processos industriais complexos dá perspectiva para entender software como um sistema, não apenas como linhas de código isoladas.</p>
+                    <p>Experiência em processos industriais complexos dá perspectiva para entender software como um sistema integrado, não apenas linhas isoladas.</p>
                 </div>
-                <div class="impact-card reveal">
+                <div class="impact-card">
                     <div class="impact-icon"><i class="fas fa-heart"></i></div>
                     <h3>Código com propósito</h3>
-                    <p>Dois dos meus projectos resolvem problemas reais de comunidades em Angola. Programo com impacto em mente desde o primeiro commit.</p>
+                    <p>ArcticCare, Angoseeds e Hydrosync resolvem problemas reais de comunidades. Programo com impacto em mente desde o primeiro commit.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ── CTA ────────────────────────────────────────────── -->
-    <section class="philanthropy-teaser">
+    <!-- ── CTA ────────────────────────────────────────── -->
+    <section class="sw-cta-section reveal">
         <div class="container">
-            <div class="sw-cta-inner">
-                <div>
-                    <h2>Pronta para contribuir.</h2>
-                    <p>Se procuras uma engenheira com base técnica sólida, capacidade de aprendizagem rápida e vontade de crescer numa equipa — vamos conversar.</p>
-                    <div class="hero-buttons" style="margin-top:2rem">
-                        <a href="../contact.html" class="btn btn-primary">Falar comigo</a>
-                        <a href="https://github.com/Aurorasimao" class="btn btn-secondary" target="_blank"><i class="fab fa-github"></i> Ver GitHub</a>
-                    </div>
-                </div>
-                <div class="sw-cta-stats">
-                    <div class="sw-stat"><span>42</span><small>Escola</small></div>
-                    <div class="sw-stat"><span>C</span><small>Base</small></div>
-                    <div class="sw-stat"><span>2</span><small>Projectos<br>liderados</small></div>
-                    <div class="sw-stat"><span>∞</span><small>Vontade de<br>aprender</small></div>
-                </div>
+            <h2>Pronta para contribuir.</h2>
+            <p>Se procuras uma engenheira com base técnica sólida, capacidade de aprendizagem rápida e vontade genuína de crescer numa equipa — vamos conversar.</p>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+                <a href="../contact.html" class="btn btn-primary">Falar comigo</a>
+                <a href="https://github.com/Aurorasimao4" class="btn btn-secondary" target="_blank"><i class="fab fa-github"></i> Ver GitHub</a>
+            </div>
+            <div class="sw-cta-stats">
+                <div class="sw-stat-item"><span>42</span><small>Escola de<br>software</small></div>
+                <div class="sw-stat-item"><span>4</span><small>Projectos<br>entregues</small></div>
+                <div class="sw-stat-item"><span>C</span><small>Base<br>sólida</small></div>
+                <div class="sw-stat-item"><span>∞</span><small>Vontade de<br>aprender</small></div>
             </div>
         </div>
     </section>
@@ -287,7 +592,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-text"><p>&copy; 2025 Aurora Simão.</p></div>
+                <div class="footer-text"><p>&copy; 2025 Aurora Simão. Feito com ❤️.</p></div>
                 <div class="footer-social">
                     <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                     <a href="https://github.com/Aurorasimao4" aria-label="GitHub"><i class="fab fa-github"></i></a>

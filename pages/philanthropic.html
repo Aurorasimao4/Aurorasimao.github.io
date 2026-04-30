@@ -3,41 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filantropia | Aurora Simao</title>
+    <title>Filantropia | Aurora Simão</title>
     <link rel="stylesheet" href="../styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ── Philanthropy page — tema rosa caloroso ── */
+        .hero.page-hero {
+            background:
+                radial-gradient(circle at top right, rgba(251,191,36,0.2), transparent 45%),
+                linear-gradient(135deg, #831843 0%, #be185d 50%, #ec4899 100%);
+        }
+
+        .philan-page .section-title::after {
+            background: linear-gradient(90deg, #ec4899, #fbbf24);
+        }
+
+        .philan-page .page-subnav a       { background: #fce7f3; color: #be185d; }
+        .philan-page .page-subnav a:hover { background: #ec4899; color: white;   }
+
+        /* ── Event card — grande destaque ── */
+        .event-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            margin-bottom: 2rem;
+        }
+
+        .event-visual {
+            background: linear-gradient(135deg, #831843 0%, #be185d 60%, #f472b6 100%);
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-date-badge {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            width: fit-content;
+        }
+        .event-date-badge .day   { font-size: 2.8rem; font-weight: 800; color: #fbbf24; line-height: 1; }
+        .event-date-badge .month { font-size: 0.85rem; font-weight: 700; color: white; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.9; }
+
+        .event-visual h2 { font-size: 1.7rem; font-weight: 800; color: white; line-height: 1.2; margin: 0; }
+        .event-visual p  { font-size: 0.9rem; color: rgba(255,255,255,0.85); line-height: 1.6; margin: 0; }
+
+        .event-activities {
+            display: flex; flex-direction: column; gap: 0.6rem;
+        }
+        .act-chip {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white; font-size: 0.8rem; font-weight: 600;
+            padding: 0.4rem 0.9rem; border-radius: 50px;
+            width: fit-content;
+        }
+        .act-chip i { font-size: 0.75rem; }
+
+        .event-deco {
+            position: absolute; bottom: -25px; right: -25px;
+            font-size: 9rem; color: rgba(255,255,255,0.05); pointer-events: none;
+        }
+
+        .event-content { padding: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+
+        .ev-label {
+            font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; color: #ec4899; margin-bottom: 0.4rem;
+        }
+        .event-content h3 { font-size: 1.1rem; color: #1f2937; font-weight: 700; margin: 0; }
+        .event-content p  { font-size: 0.9rem; color: #6b7280; line-height: 1.7; margin: 0; }
+
+        .what-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+        .what-list li {
+            display: flex; gap: 0.6rem; align-items: flex-start;
+            font-size: 0.88rem; color: #374151;
+        }
+        .what-list li i { color: #ec4899; font-size: 0.68rem; flex-shrink: 0; margin-top: 0.35rem; }
+
+        .location-chip {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: #fce7f3; color: #be185d;
+            font-size: 0.8rem; font-weight: 600;
+            padding: 0.45rem 1rem; border-radius: 50px;
+            width: fit-content;
+        }
+
+        /* ── SMET card ── */
+        .org-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+        }
+
+        .org-visual {
+            background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 60%, #818cf8 100%);
+            padding: 3rem 2.5rem;
+            display: flex; flex-direction: column;
+            justify-content: center; gap: 1.5rem;
+            position: relative; overflow: hidden;
+        }
+
+        .org-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white; font-size: 0.72rem; font-weight: 700;
+            padding: 0.3rem 0.8rem; border-radius: 50px;
+            text-transform: uppercase; letter-spacing: 0.06em;
+            width: fit-content;
+        }
+
+        .org-visual h2 { font-size: 1.6rem; font-weight: 800; color: white; line-height: 1.2; margin: 0; }
+        .org-visual p  { font-size: 0.88rem; color: rgba(255,255,255,0.85); line-height: 1.65; margin: 0; }
+
+        .org-visual .act-chip {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.25);
+        }
+
+        .org-deco {
+            position: absolute; bottom: -25px; right: -25px;
+            font-size: 9rem; color: rgba(255,255,255,0.05); pointer-events: none;
+        }
+
+        .org-content { padding: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+        .org-label {
+            font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; color: #6366f1; margin-bottom: 0.4rem;
+        }
+        .org-content h3 { font-size: 1.1rem; color: #1f2937; font-weight: 700; margin: 0; }
+        .org-content p  { font-size: 0.9rem; color: #6b7280; line-height: 1.7; margin: 0; }
+
+        .what-list li.org i { color: #6366f1; }
+
+        .org-role-box {
+            background: #eef2ff; border-radius: 12px;
+            padding: 1rem 1.25rem; border-left: 3px solid #6366f1;
+        }
+        .org-role-box p { font-size: 0.87rem; color: #374151; margin: 0; line-height: 1.65; }
+        .org-role-box strong { color: #4338ca; }
+
+        /* ── impact accent ── */
+        .philan-page .impact-card { border-top: 3px solid #ec4899; }
+        .philan-page .impact-card h3 { color: #be185d; }
+
+        /* ── values strip ── */
+        .values-strip {
+            background: linear-gradient(135deg, #831843, #be185d);
+            border-radius: 20px;
+            padding: 2.5rem;
+            color: white;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        .vs-item { text-align: center; }
+        .vs-item i    { font-size: 1.8rem; margin-bottom: 0.6rem; display: block; opacity: 0.9; }
+        .vs-item h4   { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .vs-item p    { font-size: 0.8rem; opacity: 0.8; line-height: 1.5; margin: 0; }
+
+        @media (max-width: 860px) {
+            .event-card, .org-card { grid-template-columns: 1fr; }
+            .event-visual, .org-visual { padding: 2rem; min-height: auto; }
+        }
+    </style>
 </head>
-<body>
+<body class="philan-page">
+
     <header class="header">
         <nav class="nav">
-            <div class="nav-logo">
-                <h2>Aurora Simao</h2>
-            </div>
+            <div class="nav-logo"><h2>Aurora Simão</h2></div>
             <ul class="nav-menu">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="pages/about.html">Sobre</a></li>
-                <li><a href="pages/contact.html">Contato</a></li>
+                <li><a href="../index.html">Início</a></li>
+                <li><a href="about.html">Sobre</a></li>
+                <li><a href="contact.html">Contato</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <div class="hamburger"><span></span><span></span><span></span></div>
         </nav>
     </header>
 
+    <!-- ── HERO ─────────────────────────────────────────── -->
     <section class="hero page-hero" id="home">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Atividades Filantropicas</h1>
-                <h2>Tecnologia a servico de pessoas</h2>
-                <p>Acredito que inovacao faz sentido quando melhora a vida das pessoas. Dedico tempo a projetos que unem educacao, inclusao e impacto social positivo.</p>
+                <p class="hero-eyebrow"><i class="fas fa-heart"></i> &nbsp;Além do trabalho</p>
+                <h1>Atividades<br><span class="highlight">Filantrópicas</span></h1>
+                <p class="hero-bio">
+                    Acredito que tecnologia sem propósito é apenas ferramenta. Por isso dedico parte do meu tempo a causas reais — desde acções solidárias no terreno até ao activismo por mais mulheres na engenharia e na tecnologia.
+                </p>
+                <div class="hero-tags">
+                    <span><i class="fas fa-heart"></i> Lar Dom Bosco</span>
+                    <span><i class="fas fa-female"></i> SMET — Área Académica</span>
+                    <span><i class="fas fa-laptop-code"></i> Mulheres na Tech</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Luanda, Angola</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#activities" class="btn btn-primary">Ver actividades</a>
+                    <a href="contact.html" class="btn btn-secondary">Falar comigo</a>
+                </div>
             </div>
             <div class="hero-image">
                 <div class="profile-card">
                     <div class="profile-img">
-                        <img src="../aurora.jpeg" alt="Aurora Simao" class="profile-photo">
+                        <img src="../aurora.jpeg" alt="Aurora Simão" class="profile-photo">
                     </div>
                     <div class="floating-icons">
                         <i class="fas fa-heart"></i>
@@ -50,64 +236,164 @@
         </div>
     </section>
 
-    <section class="philanthropy" id="intro">
+    <!-- ── SUBNAV ─────────────────────────────────────── -->
+    <nav class="page-subnav">
         <div class="container">
-            <h2 class="section-title">Introducao</h2>
-            <p class="section-lead">Meu trabalho voluntario conecta programacao com causas humanas. Procuro simplificar processos, ampliar acesso ao conhecimento e apoiar comunidades locais.</p>
+            <ul>
+                <li><a href="#intro">Introdução</a></li>
+                <li><a href="#activities">Actividades</a></li>
+                <li><a href="#impact">Impacto</a></li>
+            </ul>
         </div>
-    </section>
+    </nav>
 
-    <section class="philanthropy" id="activities">
+    <!-- ── INTRO ──────────────────────────────────────── -->
+    <section class="philanthropy reveal" id="intro">
         <div class="container">
-            <h2 class="section-title">Atividades</h2>
-            <div class="philanthropy-grid">
-                <div class="philanthropy-card">
-                    <div class="card-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Ensino de Programacao</h3>
-                    <p>Aulas gratuitas para jovens com foco em oportunidades de carreira e fundamentos de tecnologia.</p>
+            <h2 class="section-title">Porque me importa</h2>
+            <p class="section-lead">
+                Venho de uma família humilde e cresci percebendo que as oportunidades não chegam a toda a gente da mesma forma. Hoje, com formação em engenharia e tecnologia, sinto a responsabilidade de devolver — ao meu país, à minha comunidade e especialmente às mulheres que ainda acham que tecnologia não é para elas.
+            </p>
+            <div class="overview-grid" style="max-width:900px;margin:0 auto;">
+                <div class="overview-stat">
+                    <h3 style="color:#ec4899;">Lar Dom Bosco</h3>
+                    <p>Acção solidária realizada a 26 de Janeiro — sopa, tarde recreativa e doações</p>
                 </div>
-                <div class="philanthropy-card">
-                    <div class="card-icon">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <h3>Tecnologia Sustentavel</h3>
-                    <p>Solucoes digitais para ONGs ambientais, com foco em monitoramento e conscientizacao.</p>
+                <div class="overview-stat">
+                    <h3 style="color:#ec4899;">SMET</h3>
+                    <p>Membro activa da área académica da Sociedade das Mulheres na Engenharia e nas Tecnologias</p>
                 </div>
-                <div class="philanthropy-card">
-                    <div class="card-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Inclusao Digital</h3>
-                    <p>Projetos para ampliar acesso a conhecimento digital em comunidades rurais.</p>
-                </div>
-                <div class="philanthropy-card">
-                    <div class="card-icon">
-                        <i class="fas fa-female"></i>
-                    </div>
-                    <h3>Mulheres na Tech</h3>
-                    <p>Mentoria para jovens mulheres em STEM, compartilhando trajetoria e boas praticas.</p>
+                <div class="overview-stat">
+                    <h3 style="color:#ec4899;">Missão</h3>
+                    <p>Tecnologia acessível, mulheres empoderadas e comunidades mais fortes</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="experience" id="impact">
+    <!-- ── ACTIVIDADES ────────────────────────────────── -->
+    <section class="projects reveal" id="activities" style="background:#f8fafc;">
         <div class="container">
-            <h2 class="section-title">Impacto</h2>
+            <h2 class="section-title">Actividades</h2>
+            <p class="section-lead">Acções concretas, com data, local e impacto real — não apenas intenções.</p>
+
+            <!-- LAR DOM BOSCO -->
+            <div class="event-card">
+                <div class="event-visual">
+                    <div class="event-date-badge">
+                        <span class="day">26</span>
+                        <span class="month">Janeiro 2025</span>
+                    </div>
+                    <h2>Acção Solidária<br>Lar Dom Bosco</h2>
+                    <p>Área Masculina — Luanda, Angola</p>
+                    <div class="event-activities">
+                        <span class="act-chip"><i class="fas fa-utensils"></i> Sopa Solidária</span>
+                        <span class="act-chip"><i class="fas fa-gamepad"></i> Tarde Recreativa</span>
+                        <span class="act-chip"><i class="fas fa-gift"></i> Doações</span>
+                    </div>
+                    <i class="fas fa-heart event-deco"></i>
+                </div>
+                <div class="event-content">
+                    <div>
+                        <p class="ev-label">Sobre a acção</p>
+                        <p>No dia 26 de Janeiro, em celebração do Dia de Angola, participei numa acção de solidariedade no <strong>Lar Dom Bosco</strong> — área masculina — em Luanda. A iniciativa combinou um momento de convívio e alegria com apoio concreto através de doações.</p>
+                    </div>
+                    <div>
+                        <p class="ev-label">O que fizemos</p>
+                        <ul class="what-list">
+                            <li><i class="fas fa-circle"></i> <strong>Sopa solidária</strong> — preparação e distribuição de refeições quentes para os residentes do lar</li>
+                            <li><i class="fas fa-circle"></i> <strong>Tarde recreativa</strong> — actividades lúdicas, jogos e momentos de convívio com os jovens</li>
+                            <li><i class="fas fa-circle"></i> <strong>Doações</strong> — entrega de bens essenciais recolhidos para apoiar o quotidiano do lar</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="ev-label">Porquê o Lar Dom Bosco?</p>
+                        <p>O Lar Dom Bosco é uma instituição de acolhimento de jovens em situação de vulnerabilidade em Luanda. Acredito que estes jovens merecem não apenas apoio material, mas também momentos de alegria, atenção e dignidade.</p>
+                    </div>
+                    <div class="location-chip">
+                        <i class="fas fa-map-marker-alt"></i> Lar Dom Bosco — Área Masculina, Luanda
+                    </div>
+                </div>
+            </div>
+
+            <!-- SMET -->
+            <div class="org-card">
+                <div class="org-visual">
+                    <span class="org-badge"><i class="fas fa-female"></i> Membro Activa</span>
+                    <h2>SMET<br><span style="font-size:1rem;font-weight:400;opacity:0.85;">Sociedade das Mulheres<br>na Engenharia e nas Tecnologias</span></h2>
+                    <p>Organização que promove a participação feminina nas áreas STEM — engenharia, ciências e tecnologia — em Angola e em África.</p>
+                    <div class="event-activities">
+                        <span class="act-chip" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);"><i class="fas fa-graduation-cap"></i> Área Académica</span>
+                        <span class="act-chip" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);"><i class="fas fa-female"></i> Mulheres em STEM</span>
+                    </div>
+                    <i class="fas fa-female org-deco"></i>
+                </div>
+                <div class="org-content">
+                    <div>
+                        <p class="org-label">Sobre a organização</p>
+                        <p>A <strong>SMET</strong> é uma sociedade dedicada a inspirar, apoiar e empoderar mulheres que escolhem caminhos na engenharia e nas tecnologias. Num contexto em que as mulheres ainda são minoria nestas áreas, a SMET cria espaços de rede, aprendizagem e visibilidade.</p>
+                    </div>
+                    <div>
+                        <p class="org-label">O meu papel — Área Académica</p>
+                        <div class="org-role-box">
+                            <p>Faço parte da <strong>área académica</strong> da SMET, onde contribuo para iniciativas de formação, mentoria e apoio a estudantes e jovens profissionais em STEM. O meu foco é partilhar a minha experiência na 42 Luanda e no percurso técnico, mostrando que é possível — e que somos capazes.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="org-label">Por que me importo</p>
+                        <ul class="what-list">
+                            <li><i class="fas fa-circle org"></i> Fui uma das poucas mulheres no meu curso técnico de Petróleo — sei o que é ser minoria</li>
+                            <li><i class="fas fa-circle org"></i> Na 42 Luanda, vi o impacto que a representatividade tem na confiança das mulheres</li>
+                            <li><i class="fas fa-circle org"></i> Acredito que mais mulheres em tech significa soluções melhores para toda a sociedade</li>
+                            <li><i class="fas fa-circle org"></i> Quero ser o exemplo que eu própria não tive quando era mais nova</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ── VALORES ────────────────────────────────────── -->
+    <section class="experience reveal" id="impact">
+        <div class="container">
+            <h2 class="section-title">Impacto &amp; Valores</h2>
             <div class="impact-grid">
                 <div class="impact-card">
-                    <h3>Inclusao e Acesso</h3>
-                    <p>Mais pessoas com acesso a formacao digital e orientacao profissional.</p>
+                    <h3>Presença no terreno</h3>
+                    <p>Não só palavras — fui ao Lar Dom Bosco, preparei sopa, brinquei, abracei. O impacto começa com presença real.</p>
                 </div>
                 <div class="impact-card">
-                    <h3>Comunidades Fortalecidas</h3>
-                    <p>Projetos locais mais organizados e sustentaveis com apoio tecnologico.</p>
+                    <h3>Representatividade</h3>
+                    <p>Na SMET, mostro a jovens mulheres que é possível chegar — com background industrial, de petróleo, de Angola.</p>
                 </div>
                 <div class="impact-card">
-                    <h3>Capacitacao</h3>
-                    <p>Jovens mais preparados para oportunidades no mercado de tecnologia.</p>
+                    <h3>Comunidade primeiro</h3>
+                    <p>As minhas iniciativas filantrópicas são sempre locais, contextualizadas, e pensadas para Angola — não importadas.</p>
+                </div>
+            </div>
+
+            <!-- values strip -->
+            <div class="values-strip">
+                <div class="vs-item">
+                    <i class="fas fa-heart"></i>
+                    <h4>Empatia</h4>
+                    <p>Agir com cuidado genuíno pelas pessoas, especialmente as mais vulneráveis.</p>
+                </div>
+                <div class="vs-item">
+                    <i class="fas fa-female"></i>
+                    <h4>Representatividade</h4>
+                    <p>Ser o exemplo que não tive — para que outras não se sintam sozinhas no caminho.</p>
+                </div>
+                <div class="vs-item">
+                    <i class="fas fa-hands-helping"></i>
+                    <h4>Acção concreta</h4>
+                    <p>Menos discurso, mais presença. O impacto começa quando saímos da zona de conforto.</p>
+                </div>
+                <div class="vs-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Contexto local</h4>
+                    <p>Soluções para Angola, feitas por angolanos — com conhecimento profundo da realidade.</p>
                 </div>
             </div>
         </div>
@@ -116,14 +402,12 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-text">
-                    <p>&copy; Aurora Simao</p>
-                </div>
+                <div class="footer-text"><p>&copy; 2025 Aurora Simão. Feito com ❤️.</p></div>
                 <div class="footer-social">
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fas fa-envelope"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Aurorasimao" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:simaoaurora8@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
         </div>
