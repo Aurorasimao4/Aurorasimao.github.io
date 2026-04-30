@@ -1,3 +1,8 @@
+// Forcar HTTPS no GitHub Pages (ignora localhost)
+if (location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+    location.replace(`https://${location.host}${location.pathname}${location.search}${location.hash}`);
+}
+
 // Smooth scrolling para links de navegação
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
