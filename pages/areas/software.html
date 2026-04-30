@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineering | Aurora Simão</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-logo"><h2>Aurora Simão</h2></div>
+            <ul class="nav-menu">
+                <li><a href="../../index.html">Início</a></li>
+                <li><a href="../about.html">Sobre</a></li>
+                <li><a href="../contact.html">Contato</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </nav>
+    </header>
+
+    <!-- ── HERO ───────────────────────────────────────────── -->
+    <section class="hero page-hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow"><i class="fas fa-laptop-code"></i> Área de Atuação</p>
+                <h1>Software<br><span class="highlight">Engineering</span></h1>
+                <p class="hero-bio">
+                    Formada pela <strong>Escola 42 Luanda</strong> — uma das metodologias de ensino de engenharia de software mais exigentes do mundo. Sem professores, sem aulas: aprendizagem 100% baseada em projectos e revisão por pares. O resultado é uma engenheira que sabe aprender sozinha, depurar sob pressão e entregar código que funciona.
+                </p>
+                <div class="hero-tags">
+                    <span><i class="fas fa-terminal"></i> C / C++</span>
+                    <span><i class="fab fa-js"></i> JavaScript</span>
+                    <span><i class="fab fa-react"></i> React</span>
+                    <span><i class="fab fa-node-js"></i> Node.js</span>
+                    <span><i class="fab fa-git-alt"></i> Git</span>
+                    <span><i class="fab fa-linux"></i> Linux</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">Ver Projectos</a>
+                    <a href="https://github.com/Aurorasimao" class="btn btn-secondary" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-card">
+                    <div class="profile-img">
+                        <img src="../../aurora.jpeg" alt="Aurora Simão" class="profile-photo">
+                    </div>
+                    <div class="floating-icons">
+                        <i class="fas fa-code"></i>
+                        <i class="fas fa-terminal"></i>
+                        <i class="fab fa-git-alt"></i>
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── SUBNAV ──────────────────────────────────────────── -->
+    <nav class="page-subnav">
+        <div class="container">
+            <ul>
+                <li><a href="#school42">Escola 42</a></li>
+                <li><a href="#projects">Projectos</a></li>
+                <li><a href="#skills">Stack</a></li>
+                <li><a href="#approach">Abordagem</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ── ESCOLA 42 ───────────────────────────────────────── -->
+    <section class="sw-school reveal" id="school42">
+        <div class="container">
+            <h2 class="section-title">Formada pela 42 Luanda</h2>
+            <p class="section-lead">A 42 é uma escola de engenharia de software sem professores, sem aulas e sem hierarquia. Tudo é aprendido através de projectos práticos e avaliação entre pares — o que desenvolve não só competências técnicas, mas autonomia, pensamento crítico e capacidade de colaboração real.</p>
+            <div class="school-pillars">
+                <div class="pillar-card reveal">
+                    <div class="pillar-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Aprendizagem autónoma</h3>
+                    <p>Sem professores. Cada problema é resolvido com documentação, pesquisa e persistência — exactamente como no mundo real.</p>
+                </div>
+                <div class="pillar-card reveal">
+                    <div class="pillar-icon"><i class="fas fa-users"></i></div>
+                    <h3>Revisão por pares</h3>
+                    <p>Todo o código é avaliado por outros estudantes. Aprende-se a defender decisões técnicas, a receber crítica e a rever o trabalho dos outros com rigor.</p>
+                </div>
+                <div class="pillar-card reveal">
+                    <div class="pillar-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3>Base sólida em C</h3>
+                    <p>O currículo começa pelo mais baixo nível: gestão de memória, ponteiros, estruturas de dados e algoritmos em C puro — sem abstrações que escondam o que realmente acontece.</p>
+                </div>
+                <div class="pillar-card reveal">
+                    <div class="pillar-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Cultura de entrega</h3>
+                    <p>Deadlines reais, projectos que ou passam nos testes ou não passam. Zero tolerância para código que "mais ou menos funciona".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PROJECTOS ───────────────────────────────────────── -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">Projectos</h2>
+            <p class="section-lead">Projectos reais com impacto real — desde fundamentos de sistemas em C até aplicações web com propósito social.</p>
+            <div class="projects-grid">
+
+                <!-- Hydrosync -->
+                <div class="project-card">
+                    <div class="project-image sw-img-hydro">
+                        <i class="fas fa-water"></i>
+                        <span class="project-area-label">Liderança · Web</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Hydrosync</h3>
+                        <p>Plataforma de gestão e visualização de dados hídricos, criada para facilitar o acompanhamento e a tomada de decisão em projectos de acesso à água.</p>
+                        <ul class="project-details">
+                            <li>Arquitectura e desenvolvimento full stack do zero</li>
+                            <li>Interface clara para leitura de dados em tempo real</li>
+                            <li>Foco em usabilidade para contextos com recursos limitados</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span>JavaScript</span><span>HTML/CSS</span><span>Git</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Aurorasimao" class="btn-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Angoseeds -->
+                <div class="project-card">
+                    <div class="project-image sw-img-seeds">
+                        <i class="fas fa-seedling"></i>
+                        <span class="project-area-label">Liderança · Impacto Social</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Angoseeds</h3>
+                        <p>Plataforma digital de apoio a comunidades agrícolas em Angola, com foco em organização de conteúdo, divulgação de recursos e comunicação acessível.</p>
+                        <ul class="project-details">
+                            <li>Criação e liderança do projecto do início ao fim</li>
+                            <li>Estrutura de conteúdo pensada para utilizadores com baixa literacia digital</li>
+                            <li>Desenvolvimento e manutenção contínua</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span>JavaScript</span><span>HTML/CSS</span><span>Git</span><span>UX</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Aurorasimao" class="btn-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 42 Core -->
+                <div class="project-card">
+                    <div class="project-image sw-img-42">
+                        <i class="fas fa-terminal"></i>
+                        <span class="project-area-label">42 Luanda · C</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Projectos do Currículo 42</h3>
+                        <p>Série de projectos práticos em C que constroem, camada a camada, uma compreensão profunda de como o software realmente funciona.</p>
+                        <ul class="project-details">
+                            <li>Reimplementação de funções da libc do zero (sem bibliotecas externas)</li>
+                            <li>Gestão manual de memória, ponteiros e alocação dinâmica</li>
+                            <li>Algoritmos e estruturas de dados implementados a partir dos fundamentos</li>
+                            <li>Todo o código avaliado e aprovado por revisão de pares</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span>C</span><span>Linux</span><span>Makefile</span><span>Norminette</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Aurorasimao" class="btn-link" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── STACK ───────────────────────────────────────────── -->
+    <section class="about" id="skills">
+        <div class="container">
+            <h2 class="section-title">Stack &amp; Competências</h2>
+            <div class="stack-grid">
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-microchip"></i> Sistemas &amp; Fundamentos</h3>
+                    <ul>
+                        <li>C — gestão de memória, ponteiros, structs</li>
+                        <li>C++ — POO, templates, STL</li>
+                        <li>Linux — linha de comandos, processos, ficheiros</li>
+                        <li>Makefile — automação de builds</li>
+                        <li>Algoritmos &amp; estruturas de dados</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-globe"></i> Web &amp; Frontend</h3>
+                    <ul>
+                        <li>HTML5 / CSS3</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>React</li>
+                        <li>Next.js</li>
+                        <li>Dart / Flutter (mobile)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-server"></i> Backend &amp; Ferramentas</h3>
+                    <ul>
+                        <li>Node.js</li>
+                        <li>Git &amp; GitHub</li>
+                        <li>REST APIs</li>
+                        <li>Resolução de problemas (debugging)</li>
+                        <li>Documentação técnica</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-users-cog"></i> Soft Skills Técnicas</h3>
+                    <ul>
+                        <li>Code review — dar e receber</li>
+                        <li>Leitura de documentação complexa</li>
+                        <li>Aprendizagem autónoma</li>
+                        <li>Trabalho colaborativo em equipa técnica</li>
+                        <li>Pensamento analítico e atenção ao detalhe</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── ABORDAGEM ───────────────────────────────────────── -->
+    <section class="experience reveal" id="approach">
+        <div class="container">
+            <h2 class="section-title">A minha abordagem</h2>
+            <p class="section-lead">O background em Oil &amp; Gas, NDT e Gestão de Projectos não é um desvio — é um diferencial. Venho de ambientes onde erros têm consequências reais, onde documentação importa e onde "funciona na minha máquina" não é resposta.</p>
+            <div class="impact-grid">
+                <div class="impact-card reveal">
+                    <div class="impact-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Rigor operacional</h3>
+                    <p>Formada numa indústria onde segurança e precisão são inegociáveis. Isso traduz-se em código cuidado, testado e documentado.</p>
+                </div>
+                <div class="impact-card reveal">
+                    <div class="impact-icon"><i class="fas fa-puzzle-piece"></i></div>
+                    <h3>Visão de sistemas</h3>
+                    <p>Experiência em processos industriais complexos dá perspectiva para entender software como um sistema, não apenas como linhas de código isoladas.</p>
+                </div>
+                <div class="impact-card reveal">
+                    <div class="impact-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Código com propósito</h3>
+                    <p>Dois dos meus projectos resolvem problemas reais de comunidades em Angola. Programo com impacto em mente desde o primeiro commit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CTA ────────────────────────────────────────────── -->
+    <section class="philanthropy-teaser">
+        <div class="container">
+            <div class="sw-cta-inner">
+                <div>
+                    <h2>Pronta para contribuir.</h2>
+                    <p>Se procuras uma engenheira com base técnica sólida, capacidade de aprendizagem rápida e vontade de crescer numa equipa — vamos conversar.</p>
+                    <div class="hero-buttons" style="margin-top:2rem">
+                        <a href="../contact.html" class="btn btn-primary">Falar comigo</a>
+                        <a href="https://github.com/Aurorasimao" class="btn btn-secondary" target="_blank"><i class="fab fa-github"></i> Ver GitHub</a>
+                    </div>
+                </div>
+                <div class="sw-cta-stats">
+                    <div class="sw-stat"><span>42</span><small>Escola</small></div>
+                    <div class="sw-stat"><span>C</span><small>Base</small></div>
+                    <div class="sw-stat"><span>2</span><small>Projectos<br>liderados</small></div>
+                    <div class="sw-stat"><span>∞</span><small>Vontade de<br>aprender</small></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text"><p>&copy; 2025 Aurora Simão.</p></div>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Aurorasimao4" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:simaoaurora8@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../script.js"></script>
+</body>
+</html>

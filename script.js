@@ -58,8 +58,9 @@ const observer = new IntersectionObserver((entries) => {
 
 // Aplicar animação aos elementos
 document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('page-ready');
     const animatedElements = document.querySelectorAll(
-        '.project-card, .philanthropy-card, .timeline-item, .skill-category'
+        '.project-card, .philanthropy-card, .timeline-item, .skill-category, .overview-stat, .reveal'
     );
     
     animatedElements.forEach(el => {
@@ -68,6 +69,40 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
+
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(link => {
+        const linkUrl = new URL(link.getAttribute('href'), window.location.href);
+        const linkPath = linkUrl.pathname.split('/').pop() || 'index.html';
+        if (linkPath === currentPath) {
+            link.classList.add('active');
+        }
+    });
+});
+
+// Transicao suave entre paginas
+document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href]');
+    if (!link) {
+        return;
+    }
+
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || link.target === '_blank') {
+        return;
+    }
+
+    const url = new URL(href, window.location.href);
+    if (url.origin !== window.location.origin) {
+        return;
+    }
+
+    event.preventDefault();
+    document.body.classList.add('page-exit');
+    setTimeout(() => {
+        window.location.href = url.href;
+    }, 300);
 });
 
 // Formulário de contato
@@ -115,7 +150,7 @@ function typeWriter(element, text, speed = 100) {
 
 // Aplicar efeito de digitação quando a página carregar
 window.addEventListener('load', () => {
-    const heroTitle = document.querySelector('.hero h1');
+    const heroTitle = document.querySelector('[data-typewriter]');
     if (heroTitle) {
         const originalText = heroTitle.textContent;
         typeWriter(heroTitle, originalText, 80);
@@ -143,11 +178,30 @@ function animateCounter(element, target, duration = 2000) {
 // Parallax effect suave
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.hero');
+    const parallaxElements = document.querySelectorAll('[data-parallax="true"]');
     
     parallaxElements.forEach(element => {
         const speed = 0.5;
         element.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+});
+
+// Reveal da secao de areas quando clicar no CTA
+document.addEventListener('DOMContentLoaded', () => {
+    const exploreButton = document.querySelector('#explore-areas');
+    const areasSection = document.querySelector('#areas');
+    if (!exploreButton || !areasSection) {
+        return;
+    }
+
+    exploreButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        areasSection.classList.add('is-visible');
+        areasSection.classList.remove('is-collapsed');
+        areasSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
     });
 });
 
@@ -168,8 +222,12 @@ window.addEventListener('scroll', () => {
     });
     
     navLinks.forEach(link => {
+        const href = link.getAttribute('href') || '';
+        if (!href.startsWith('#')) {
+            return;
+        }
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
+        if (href === `#${current}`) {
             link.classList.add('active');
         }
     });

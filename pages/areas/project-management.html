@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Projectos | Aurora Simão</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ── PM page — tema índigo/violeta ── */
+        .hero.page-hero {
+            background:
+                radial-gradient(circle at top right, rgba(99,102,241,0.25), transparent 45%),
+                linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+        }
+
+        .pm-page .section-title::after {
+            background: linear-gradient(90deg, #6366f1, #818cf8);
+        }
+        .pm-page .page-subnav a       { background: #e0e7ff; color: #3730a3; }
+        .pm-page .page-subnav a:hover { background: #6366f1; color: white;   }
+
+        /* company badge */
+        .company-strip {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem 2.5rem;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            border-left: 5px solid #6366f1;
+        }
+        .company-icon {
+            width: 64px; height: 64px;
+            background: #e0e7ff;
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.7rem; color: #6366f1;
+            flex-shrink: 0;
+        }
+        .company-info h3 { font-size: 1.2rem; color: #1f2937; margin: 0 0 0.25rem; font-weight: 700; }
+        .company-info p  { font-size: 0.88rem; color: #6b7280; margin: 0; line-height: 1.5; }
+        .company-tags    { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .company-tags span {
+            background: #e0e7ff; color: #3730a3;
+            font-size: 0.72rem; font-weight: 700;
+            padding: 0.2rem 0.65rem; border-radius: 50px;
+        }
+
+        /* project cards — large feature cards */
+        .project-feature {
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 10px 36px rgba(0,0,0,0.09);
+            margin-bottom: 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+        }
+        .project-feature:nth-child(even) { direction: rtl; }
+        .project-feature:nth-child(even) > * { direction: ltr; }
+
+        .pf-visual {
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .pf-angoseeds { background: linear-gradient(135deg, #14532d 0%, #15803d 60%, #22c55e 100%); }
+        .pf-agrosafe  { background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 60%, #6366f1 100%); }
+
+        .pf-visual h2 {
+            font-size: 1.8rem; font-weight: 800;
+            color: white; line-height: 1.2; margin: 0;
+        }
+        .pf-visual p  { color: rgba(255,255,255,0.85); font-size: 0.92rem; line-height: 1.65; margin: 0; }
+
+        .pf-badge {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white; font-size: 0.72rem; font-weight: 700;
+            padding: 0.3rem 0.8rem; border-radius: 50px; width: fit-content;
+            text-transform: uppercase; letter-spacing: 0.06em;
+        }
+
+        .pf-stats {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+        }
+        .pf-stat {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px; padding: 0.8rem 0.9rem;
+        }
+        .pf-stat strong { display: block; font-size: 1.3rem; color: white; font-weight: 700; }
+        .pf-stat span   { font-size: 0.72rem; color: rgba(255,255,255,0.75); }
+
+        /* floating deco icon */
+        .pf-deco-icon {
+            position: absolute; bottom: -20px; right: -20px;
+            font-size: 8rem; color: rgba(255,255,255,0.06);
+            pointer-events: none;
+        }
+
+        .pf-content { padding: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+
+        .pf-section-label {
+            font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; color: #6366f1; margin-bottom: 0.4rem;
+        }
+
+        .pf-content h3 { font-size: 1.15rem; color: #1f2937; font-weight: 700; margin: 0; }
+        .pf-content p  { font-size: 0.9rem; color: #6b7280; line-height: 1.7; margin: 0; }
+
+        .feature-list {
+            list-style: none; display: flex; flex-direction: column; gap: 0.45rem;
+        }
+        .feature-list li {
+            display: flex; gap: 0.6rem; align-items: flex-start;
+            font-size: 0.87rem; color: #374151;
+        }
+        .feature-list li i { color: #6366f1; font-size: 0.7rem; flex-shrink: 0; margin-top: 0.3rem; }
+
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .tech-tags span {
+            background: #e0e7ff; color: #3730a3;
+            font-size: 0.75rem; font-weight: 600;
+            padding: 0.28rem 0.75rem; border-radius: 50px;
+        }
+        .tech-tags span.green { background: #dcfce7; color: #14532d; }
+
+        .pm-role-box {
+            background: #f8fafc; border-radius: 12px;
+            padding: 1rem 1.25rem; border-left: 3px solid #6366f1;
+        }
+        .pm-role-box p { font-size: 0.87rem; color: #374151; margin: 0; line-height: 1.65; }
+        .pm-role-box strong { color: #4338ca; }
+
+        /* skills section */
+        .pm-page .about { background: white; }
+
+        /* impact */
+        .pm-page .impact-card { border-top: 3px solid #6366f1; }
+        .pm-page .impact-card h3 { color: #3730a3; }
+
+        .pm-page .cta {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+        }
+
+        /* competency bars */
+        .competency-list { display: flex; flex-direction: column; gap: 1rem; }
+        .comp-label { display: flex; justify-content: space-between; font-size: 0.87rem; font-weight: 600; color: #374151; margin-bottom: 0.35rem; }
+        .comp-bar   { height: 8px; background: #e5e7eb; border-radius: 99px; overflow: hidden; }
+        .comp-fill  { height: 100%; background: linear-gradient(90deg, #6366f1, #818cf8); border-radius: 99px; transition: width 1s ease; }
+
+        @media (max-width: 900px) {
+            .project-feature { grid-template-columns: 1fr; }
+            .project-feature:nth-child(even) { direction: ltr; }
+            .pf-visual { padding: 2rem; }
+            .pf-stats  { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body class="pm-page">
+
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-logo"><h2>Aurora Simão</h2></div>
+            <ul class="nav-menu">
+                <li><a href="../../index.html">Início</a></li>
+                <li><a href="../about.html">Sobre</a></li>
+                <li><a href="../contact.html">Contato</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </nav>
+    </header>
+
+    <!-- ── HERO ─────────────────────────────────────────── -->
+    <section class="hero page-hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow"><i class="fas fa-project-diagram"></i> &nbsp;Gestão de Projectos</p>
+                <h1>Project Manager<br><span class="highlight">CSS Software &amp; Solutions</span></h1>
+                <p class="hero-bio">
+                    Actuei como Project Manager na <strong>CSS Software &amp; Solutions</strong> — empresa de engenharia de software sediada em Luanda — com responsabilidade sobre dois projectos de impacto real: <strong>Angoseeds</strong> e <strong>Agrosafe Angola</strong>. Ambos com foco em transformar a agricultura angolana através de tecnologia.
+                </p>
+                <div class="hero-tags">
+                    <span><i class="fas fa-building"></i> CSS Software &amp; Solutions</span>
+                    <span><i class="fas fa-seedling"></i> Angoseeds</span>
+                    <span><i class="fas fa-warehouse"></i> Agrosafe Angola</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Luanda, Angola</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">Ver Projectos</a>
+                    <a href="../contact.html" class="btn btn-secondary">Contato</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-card">
+                    <div class="profile-img">
+                        <img src="../../aurora.jpeg" alt="Aurora Simão" class="profile-photo">
+                    </div>
+                    <div class="floating-icons">
+                        <i class="fas fa-tasks"></i>
+                        <i class="fas fa-chart-gantt"></i>
+                        <i class="fas fa-seedling"></i>
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── SUBNAV ─────────────────────────────────────── -->
+    <nav class="page-subnav">
+        <div class="container">
+            <ul>
+                <li><a href="#summary">Resumo</a></li>
+                <li><a href="#projects">Projectos</a></li>
+                <li><a href="#skills">Competências</a></li>
+                <li><a href="#impact">Resultados</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ── RESUMO ─────────────────────────────────────── -->
+    <section class="experience reveal" id="summary">
+        <div class="container">
+            <h2 class="section-title">Resumo</h2>
+            <p class="section-lead">
+                Na CSS Software &amp; Solutions contribuí como PM em dois projectos digitais de impacto social no sector agrícola angolano. Fui responsável por coordenar equipas, alinhar requisitos, acompanhar entregas e garantir que os produtos chegassem ao mercado com qualidade — bridging the gap entre visão técnica e impacto real.
+            </p>
+
+            <!-- Company strip -->
+            <div class="company-strip">
+                <div class="company-icon"><i class="fas fa-laptop-code"></i></div>
+                <div class="company-info">
+                    <h3>CSS Software &amp; Solutions</h3>
+                    <p>Empresa de engenharia de software sediada em Luanda, Angola. Desenvolve produtos digitais de produção — plataformas SaaS, sistemas enterprise e soluções customizadas — com foco em performance, escalabilidade e impacto local.</p>
+                    <div class="company-tags">
+                        <span>Software Engineering</span>
+                        <span>SaaS Platforms</span>
+                        <span>Luanda, Angola</span>
+                        <span>Product Development</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overview-grid" style="max-width:900px;margin:0 auto;">
+                <div class="overview-stat">
+                    <h3 style="color:#6366f1;">2 Projectos</h3>
+                    <p>Angoseeds e Agrosafe — ambos no sector agrícola angolano com impacto social directo</p>
+                </div>
+                <div class="overview-stat">
+                    <h3 style="color:#6366f1;">Agri-Tech</h3>
+                    <p>Tecnologia aplicada à agricultura — marketplace digital e sistema de armazenamento inteligente</p>
+                </div>
+                <div class="overview-stat">
+                    <h3 style="color:#6366f1;">Full Lifecycle</h3>
+                    <p>Da concepção ao lançamento — coordenação de requisitos, desenvolvimento e entrega</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PROJECTOS ──────────────────────────────────── -->
+    <section class="projects reveal" id="projects" style="background:#f8fafc;">
+        <div class="container">
+            <h2 class="section-title">Projectos</h2>
+            <p class="section-lead">Dois projectos distintos, um objectivo comum: usar tecnologia para transformar a agricultura em Angola.</p>
+
+            <!-- ANGOSEEDS -->
+            <div class="project-feature">
+                <div class="pf-visual pf-angoseeds">
+                    <span class="pf-badge"><i class="fas fa-store"></i> Marketplace Digital</span>
+                    <h2>Angoseeds</h2>
+                    <p>Plataforma digital que conecta fornecedores, compradores e agricultores para transformar o comércio agrícola angolano com transparência, eficiência e responsabilidade social.</p>
+                    <div class="pf-stats">
+                        <div class="pf-stat"><strong>5+</strong><span>Módulos entregues</span></div>
+                        <div class="pf-stat"><strong>Next.js</strong><span>Stack principal</span></div>
+                        <div class="pf-stat"><strong>500+</strong><span>Agricultores alvo</span></div>
+                        <div class="pf-stat"><strong>Angola</strong><span>Mercado foco</span></div>
+                    </div>
+                    <i class="fas fa-seedling pf-deco-icon"></i>
+                </div>
+                <div class="pf-content">
+                    <div>
+                        <p class="pf-section-label">Sobre o projecto</p>
+                        <p>Marketplace agrícola que elimina intermediários, conectando directamente agricultores a compradores. Inclui um módulo de doações para reduzir o desperdício e apoiar comunidades vulneráveis.</p>
+                    </div>
+                    <div>
+                        <p class="pf-section-label">Funcionalidades desenvolvidas</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-circle"></i> Catálogo de produtos agrícolas com geolocalização — "produtos perto de si"</li>
+                            <li><i class="fas fa-circle"></i> Sistema de negociações em tempo real com mensagens entre compradores e vendedores</li>
+                            <li><i class="fas fa-circle"></i> Módulo de doações e apoio comunitário com tracking de progresso</li>
+                            <li><i class="fas fa-circle"></i> Fluxo de pagamento integrado por negociação</li>
+                            <li><i class="fas fa-circle"></i> Autenticação, perfis de utilizador e painel de vendedor</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="pf-section-label">O meu papel como PM</p>
+                        <div class="pm-role-box">
+                            <p>Coordenação de <strong>requisitos e roadmap</strong> do produto, gestão das entregas por sprint, alinhamento entre design, desenvolvimento e stakeholders. Garanti que a experiência do utilizador reflectia as necessidades reais dos agricultores angolanos.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="pf-section-label">Stack técnico</p>
+                        <div class="tech-tags">
+                            <span class="green">Next.js</span>
+                            <span class="green">React</span>
+                            <span class="green">TypeScript</span>
+                            <span class="green">Tailwind CSS</span>
+                            <span class="green">Radix UI</span>
+                            <span class="green">Recharts</span>
+                            <span class="green">Vercel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AGROSAFE -->
+            <div class="project-feature">
+                <div class="pf-visual pf-agrosafe">
+                    <span class="pf-badge"><i class="fas fa-warehouse"></i> Agri-Tech / Logística</span>
+                    <h2>Agrosafe Angola</h2>
+                    <p>Sistema integrado de armazenamento inteligente e logística eficiente para reduzir as perdas pós-colheita — um problema que afecta até 50% da produção agrícola em Angola.</p>
+                    <div class="pf-stats">
+                        <div class="pf-stat"><strong>50%</strong><span>Perdas pós-colheita alvo</span></div>
+                        <div class="pf-stat"><strong>Lobito</strong><span>Corredor integrado</span></div>
+                        <div class="pf-stat"><strong>7</strong><span>Fases do roadmap</span></div>
+                        <div class="pf-stat"><strong>Escala</strong><span>Modelo modular</span></div>
+                    </div>
+                    <i class="fas fa-warehouse pf-deco-icon"></i>
+                </div>
+                <div class="pf-content">
+                    <div>
+                        <p class="pf-section-label">Sobre o projecto</p>
+                        <p>Solução que combina infraestrutura descentralizada com tecnologia de mapeamento para resolver a cadeia de armazenamento agrícola. Os módulos são instalados próximos das comunidades e integram-se ao Corredor do Lobito para escoamento eficiente.</p>
+                    </div>
+                    <div>
+                        <p class="pf-section-label">Componentes da solução</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-circle"></i> Infraestrutura descentralizada com pontos de recolha comunitários</li>
+                            <li><i class="fas fa-circle"></i> Sistema de organização interna com separação por tipo de produto</li>
+                            <li><i class="fas fa-circle"></i> Mapeamento de áreas agrícolas com identificação de zonas produtivas</li>
+                            <li><i class="fas fa-circle"></i> Drones para planeamento da localização dos módulos</li>
+                            <li><i class="fas fa-circle"></i> Integração com o Corredor do Lobito para redução do desperdício logístico</li>
+                            <li><i class="fas fa-circle"></i> Modelo de negócio via cooperativas com expansão modular por comunidade</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="pf-section-label">O meu papel como PM</p>
+                        <div class="pm-role-box">
+                            <p>Estruturação do <strong>roadmap faseado</strong> (Concepção → Desenvolvimento → Implementação), definição da proposta de valor, preparação da apresentação para investidores e parceiros, e coordenação da equipa multidisciplinar da CSS Software &amp; Solutions.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="pf-section-label">Impacto esperado</p>
+                        <div class="tech-tags">
+                            <span>Redução de perdas agrícolas</span>
+                            <span>Aumento da renda rural</span>
+                            <span>Segurança alimentar</span>
+                            <span>Corredor do Lobito</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ── COMPETÊNCIAS ───────────────────────────────── -->
+    <section class="about reveal" id="skills">
+        <div class="container">
+            <h2 class="section-title">Competências em Gestão</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="skill-category" style="margin-bottom:1.5rem;">
+                        <h3 style="color:#6366f1;"><i class="fas fa-project-diagram"></i> Gestão de Projectos</h3>
+                        <ul>
+                            <li>Definição de roadmap e planeamento de sprints</li>
+                            <li>Gestão de requisitos e escopo</li>
+                            <li>Coordenação de equipas multidisciplinares</li>
+                            <li>Acompanhamento de entregas e milestones</li>
+                            <li>Gestão de riscos e resolução de bloqueios</li>
+                            <li>Comunicação com stakeholders e investidores</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 style="color:#6366f1;"><i class="fas fa-tools"></i> Ferramentas &amp; Metodologias</h3>
+                        <ul>
+                            <li>Metodologias ágeis (Scrum / Kanban)</li>
+                            <li>Gestão de backlog e user stories</li>
+                            <li>Apresentações executivas a investidores</li>
+                            <li>Documentação técnica e funcional</li>
+                            <li>Controlo de qualidade e QA</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="skill-category">
+                        <h3 style="color:#6366f1;"><i class="fas fa-chart-bar"></i> Nível de Competência</h3>
+                        <div class="competency-list" style="margin-top:1rem;" id="pm-competencies">
+                            <div class="comp-item">
+                                <div class="comp-label"><span>Gestão de Roadmap</span><span>85%</span></div>
+                                <div class="comp-bar"><div class="comp-fill" data-width="85"></div></div>
+                            </div>
+                            <div class="comp-item">
+                                <div class="comp-label"><span>Coordenação de Equipas</span><span>88%</span></div>
+                                <div class="comp-bar"><div class="comp-fill" data-width="88"></div></div>
+                            </div>
+                            <div class="comp-item">
+                                <div class="comp-label"><span>Gestão de Requisitos</span><span>82%</span></div>
+                                <div class="comp-bar"><div class="comp-fill" data-width="82"></div></div>
+                            </div>
+                            <div class="comp-item">
+                                <div class="comp-label"><span>Comunicação com Stakeholders</span><span>87%</span></div>
+                                <div class="comp-bar"><div class="comp-fill" data-width="87"></div></div>
+                            </div>
+                            <div class="comp-item">
+                                <div class="comp-label"><span>Metodologias Ágeis</span><span>80%</span></div>
+                                <div class="comp-bar"><div class="comp-fill" data-width="80"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── RESULTADOS ─────────────────────────────────── -->
+    <section class="experience reveal" id="impact">
+        <div class="container">
+            <h2 class="section-title">Resultados &amp; Diferenciais</h2>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <h3>Dois produtos lançados</h3>
+                    <p>Coordenei o ciclo completo de dois produtos digitais — da concepção ao lançamento — dentro da CSS Software &amp; Solutions.</p>
+                </div>
+                <div class="impact-card">
+                    <h3>Impacto social mensurável</h3>
+                    <p>Ambos os projectos têm métricas claras de impacto: agricultores atendidos, volume armazenado, redução de perdas pós-colheita.</p>
+                </div>
+                <div class="impact-card">
+                    <h3>Visão técnica + de gestão</h3>
+                    <p>A minha formação em engenharia de software permite-me comunicar fluentemente com developers e alinhar requisitos técnicos com objectivos de negócio.</p>
+                </div>
+                <div class="impact-card">
+                    <h3>Contexto local profundo</h3>
+                    <p>Trabalhar em Angola com produtos para o sector agrícola exige compreensão do ecossistema local — infraestrutura, comunidades rurais, Corredor do Lobito e contexto regulatório ANPG.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CTA ────────────────────────────────────────── -->
+    <section class="cta reveal">
+        <div class="container">
+            <h2>PM que entende código e campo.</h2>
+            <p>Com background em engenharia de software e experiência real em gestão de produtos digitais, consigo liderar projectos técnicos com precisão — da definição de requisitos à entrega final.</p>
+            <div class="cta-buttons">
+                <a href="../contact.html" class="btn btn-primary">Falar comigo</a>
+                <a href="../../index.html#areas" class="btn btn-secondary">Ver outras áreas</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text"><p>&copy; 2025 Aurora Simão. Feito com ❤️.</p></div>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Aurorasimao" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:simaoaurora8@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script>
+        const pmSection = document.getElementById('skills');
+        const fills = document.querySelectorAll('#pm-competencies .comp-fill');
+        fills.forEach(f => { f.style.width = '0%'; });
+
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    fills.forEach((fill, i) => {
+                        setTimeout(() => {
+                            fill.style.width = fill.getAttribute('data-width') + '%';
+                        }, i * 120);
+                    });
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.25 });
+
+        if (pmSection) obs.observe(pmSection);
+    </script>
+</body>
+</html>

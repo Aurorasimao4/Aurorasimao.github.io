@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Mim | Aurora Simão</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* timeline domain colours */
+        .tl-oil  { border-color: #f59e0b !important; }
+        .tl-oil  i { color: #f59e0b !important; }
+        .tl-ndt  { border-color: #10b981 !important; }
+        .tl-ndt  i { color: #10b981 !important; }
+        .tl-pm   { border-color: #6366f1 !important; }
+        .tl-pm   i { color: #6366f1 !important; }
+        .tl-sw   { border-color: #ec4899 !important; }
+        .tl-sw   i { color: #ec4899 !important; }
+        .tl-heart{ border-color: #f43f5e !important; }
+        .tl-heart i { color: #f43f5e !important; }
+
+        .timeline-badge-inline {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.18rem 0.6rem;
+            border-radius: 50px;
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .badge-oil   { background:#fef3c7; color:#92400e; }
+        .badge-ndt   { background:#d1fae5; color:#065f46; }
+        .badge-pm    { background:#e0e7ff; color:#3730a3; }
+        .badge-sw    { background:#fce7f3; color:#be185d; }
+        .badge-heart { background:#ffe4e6; color:#be123c; }
+
+        .timeline-content h4 { color: #6b7280; font-size: 0.88rem; margin-bottom: 0.6rem; font-weight: 500; }
+
+        /* skills — two columns cleaner */
+        .skills-two {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        /* personality values */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+        .value-item {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem 1.25rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            transition: transform 0.3s ease;
+        }
+        .value-item:hover { transform: translateY(-4px); }
+        .value-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: #fce7f3;
+            color: #ec4899;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .value-item h4 { font-size: 0.95rem; color: #1f2937; margin-bottom: 0.2rem; }
+        .value-item p  { font-size: 0.82rem; color: #6b7280; line-height: 1.5; margin: 0; }
+
+        @media (max-width: 768px) {
+            .skills-two { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .skills-two { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-logo"><h2>Aurora Simão</h2></div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Início</a></li>
+                <li><a href="about.html" class="active">Sobre</a></li>
+                <li><a href="contact.html">Contato</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </nav>
+    </header>
+
+    <!-- ── HERO ─────────────────────────────────────────── -->
+    <section class="hero page-hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow"><i class="fas fa-user"></i> &nbsp;Perfil Completo</p>
+                <h1>Sobre Mim</h1>
+                <p class="hero-bio">
+                    Engenheira de software formada pela <strong>42 Luanda</strong>, com raízes técnicas em Oil &amp; Gas, Inspeção NDT e Gestão de Projetos. Combino rigor operacional com paixão por código — e acredito que tecnologia bem feita muda vidas.
+                </p>
+                <div class="hero-tags">
+                    <span><i class="fas fa-laptop-code"></i> Eng. de Software — 42</span>
+                    <span><i class="fas fa-oil-well"></i> Oil &amp; Gas</span>
+                    <span><i class="fas fa-search-plus"></i> NDT Level II</span>
+                    <span><i class="fas fa-heart"></i> Filantropia</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#about" class="btn btn-primary">Ler mais</a>
+                    <a href="contact.html" class="btn btn-secondary">Falar comigo</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-card">
+                    <div class="profile-img">
+                        <img src="../aurora.jpeg" alt="Aurora Simão" class="profile-photo">
+                    </div>
+                    <div class="floating-icons">
+                        <i class="fas fa-code"></i>
+                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-oil-well"></i>
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── RESUMO PROFISSIONAL ────────────────────────── -->
+    <section class="about reveal" id="about">
+        <div class="container">
+            <h2 class="section-title">Quem sou eu</h2>
+            <div class="about-two-col">
+                <div class="about-main">
+                    <p>Sou Aurora Simão, nascida em Luanda, Angola. Cresci fascinada por como as coisas funcionam — máquinas, processos, sistemas. Esse fascínio levou-me ao ensino técnico em <strong>Perfuração e Produção Petrolífera</strong>, onde aprendi que rigor, segurança e atenção ao detalhe não são opcionais: são a base de tudo.</p>
+                    <p>Com o tempo, percebi que a tecnologia era o campo onde esse mesmo rigor poderia ter o maior impacto. Entrei na <strong>Escola 42 Luanda</strong> — uma escola sem professores, sem aulas, onde aprendes resolvendo problemas reais em colaboração com os teus pares. Foi transformador. Aprendi C, algoritmos, estruturas de dados, desenvolvimento web — mas acima de tudo aprendi a <em>aprender</em>.</p>
+                    <p>Ao longo do caminho, adicionei certificações em <strong>Inspeção NDT (MT &amp; PT Level II)</strong> e <strong>Operadora de Produção de Petróleo</strong>, complementando uma visão que poucos têm: a de quem entende tanto a linha de código quanto a linha de produção.</p>
+                    <p>Fora do trabalho, dedico tempo a causas que me importam — ensino de programação, inclusão digital e apoio a jovens mulheres que querem entrar na tecnologia.</p>
+                    <a href="contact.html" class="btn btn-outline" style="margin-top:0.5rem;">Vamos conversar</a>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-box">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Áreas de<br>atuação</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">20</span>
+                        <span class="stat-label">PAP nota<br>máxima</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Cert. NDT<br>Level II</span>
+                    </div>
+                    <div class="stat-box stat-box-wide">
+                        <i class="fas fa-heart stat-icon"></i>
+                        <span class="stat-label">Activismo &amp; Filantropia</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── COMPETÊNCIAS ───────────────────────────────── -->
+    <section class="projects reveal" id="skills">
+        <div class="container">
+            <h2 class="section-title">Competências</h2>
+            <p class="section-lead">Três domínios técnicos, uma perspectiva integrada.</p>
+            <div class="skills-two">
+                <div class="skill-category">
+                    <h3 style="color:#ec4899;"><i class="fas fa-laptop-code"></i> Software</h3>
+                    <ul>
+                        <li>C / C++</li>
+                        <li>HTML / CSS</li>
+                        <li>JavaScript</li>
+                        <li>React / Next.js</li>
+                        <li>Node.js</li>
+                        <li>Dart</li>
+                        <li>Git / GitHub</li>
+                        <li>Algoritmos &amp; Estruturas de dados</li>
+                        <li>Linux / Shell</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3 style="color:#f59e0b;"><i class="fas fa-oil-well"></i> Oil &amp; Gas / NDT</h3>
+                    <ul>
+                        <li>Perfuração e produção de petróleo</li>
+                        <li>Leitura de PFD e P&amp;ID</li>
+                        <li>Plataformas offshore e processamento</li>
+                        <li>Magnetic Particle Testing (MT II)</li>
+                        <li>Liquid Penetrant Testing (PT II)</li>
+                        <li>Norma ASNT SNT TC-1A 2024</li>
+                        <li>SCADA e controlo de processos</li>
+                        <li>Segurança industrial (HSE)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3 style="color:#6366f1;"><i class="fas fa-project-diagram"></i> Gestão &amp; Soft Skills</h3>
+                    <ul>
+                        <li>Gestão de projectos técnicos</li>
+                        <li>Controlo de qualidade (18/20 final)</li>
+                        <li>Gestão de riscos operacionais</li>
+                        <li>Trabalho em equipa &amp; peer review</li>
+                        <li>Aprendizagem autónoma (42)</li>
+                        <li>Pensamento crítico e analítico</li>
+                        <li>Comunicação técnica</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── TIMELINE ───────────────────────────────────── -->
+    <section class="experience reveal" id="experience">
+        <div class="container">
+            <h2 class="section-title">Percurso</h2>
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="timeline-icon tl-oil">
+                        <i class="fas fa-oil-well"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-badge-inline badge-oil">Oil &amp; Gas</span>
+                        <h3>Técnica de Perfuração e Produção Petrolífera</h3>
+                        <h4>Instituto Politécnico do Soyo · 2020–2024</h4>
+                        <p>Formação técnica completa em perfuração de poços, tecnologia de produção, geologia de jazidas, segurança industrial e trabalhos de campo. Nota final 15/20 — PAP com nota máxima 20/20.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon tl-ndt">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-badge-inline badge-ndt">NDT</span>
+                        <h3>MT Level II + PT Level II — Certificação NDT</h3>
+                        <h4>Advanced Institute of NDT &amp; Training · Jan 2026</h4>
+                        <p>Dupla certificação em Ensaios Não Destrutivos pela norma ASNT SNT TC-1A 2024. Nota composta de 88.1% (MT) e 88.6% (PT) — ambas acima do mínimo exigido de 80%. Válidas até 2031.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon tl-oil">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-badge-inline badge-oil">Oil &amp; Gas</span>
+                        <h3>Operadora de Produção de Petróleo</h3>
+                        <h4>MB EPRO / ANPG · Out–Nov 2025 · Luanda</h4>
+                        <p>Formação intensiva em operação de sistemas de produção, SCADA, manutenção de equipamentos e gestão de riscos em plataformas. Nota 17/20. Credenciada pela ANPG, IWCF e HIDRAUSEA.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon tl-sw">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-badge-inline badge-sw">Software</span>
+                        <h3>Engenharia de Software</h3>
+                        <h4>Escola 42 Luanda · Concluído</h4>
+                        <p>Formação em engenharia de software pela metodologia peer-to-peer da 42 — sem professores, sem aulas. Foco em C, algoritmos, estruturas de dados, desenvolvimento web full stack e colaboração em projectos reais.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon tl-heart">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-badge-inline badge-heart">Filantropia</span>
+                        <h3>Activismo &amp; Voluntariado</h3>
+                        <h4>Contínuo</h4>
+                        <p>Ensino de programação a jovens em comunidades carentes, mentoria para mulheres na tecnologia, inclusão digital e suporte a ONGs com desenvolvimento de ferramentas tecnológicas.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── VALORES ────────────────────────────────────── -->
+    <section class="about reveal" style="background:#f8fafc;" id="values">
+        <div class="container">
+            <h2 class="section-title">O que me move</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div>
+                        <h4>Rigor e Disciplina</h4>
+                        <p>Vindo da indústria onde erros custam vidas, levo a mesma exigência para o código e para os projectos.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon" style="background:#e0e7ff;color:#6366f1;"><i class="fas fa-lightbulb"></i></div>
+                    <div>
+                        <h4>Aprendizagem contínua</h4>
+                        <p>A metodologia da 42 ensinou-me a aprender qualquer coisa sozinha. Não paro nunca.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon" style="background:#d1fae5;color:#10b981;"><i class="fas fa-users"></i></div>
+                    <div>
+                        <h4>Impacto humano</h4>
+                        <p>Tecnologia deve servir pessoas. Escolho projectos que fazem diferença real nas comunidades.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon" style="background:#fef3c7;color:#f59e0b;"><i class="fas fa-puzzle-piece"></i></div>
+                    <div>
+                        <h4>Visão integrada</h4>
+                        <p>Penso em sistemas completos — da linha de produção à interface de utilizador.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text"><p>&copy; 2025 Aurora Simão.</p></div>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Aurorasimao4" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:simaoaurora8@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

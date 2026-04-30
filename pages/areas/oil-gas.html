@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oil & Gas | Aurora Simão</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ── Oil & Gas — tema âmbar/escuro ── */
+        .hero.page-hero {
+            background:
+                radial-gradient(circle at top right, rgba(251,191,36,0.3), transparent 45%),
+                linear-gradient(135deg, #78350f 0%, #92400e 50%, #b45309 100%);
+        }
+
+        .oil-page .section-title::after {
+            background: linear-gradient(90deg, #f59e0b, #fbbf24);
+        }
+
+        .oil-page .page-subnav a       { background: #fef3c7; color: #92400e; }
+        .oil-page .page-subnav a:hover { background: #f59e0b; color: white; }
+
+        /* cert cards */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cert-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+            border-left: 5px solid #f59e0b;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cert-card:hover { transform: translateY(-5px); box-shadow: 0 16px 36px rgba(0,0,0,0.13); }
+
+        .cert-header { display: flex; align-items: flex-start; gap: 1rem; }
+
+        .cert-icon {
+            width: 52px; height: 52px;
+            background: #fef3c7;
+            border-radius: 13px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: #f59e0b;
+            flex-shrink: 0;
+        }
+
+        .cert-header h3 { font-size: 1.1rem; color: #1f2937; margin: 0 0 0.2rem; }
+        .cert-header p  { font-size: 0.8rem; color: #6b7280; margin: 0; line-height: 1.4; }
+
+        .cert-badge {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: #fef3c7; color: #92400e;
+            font-size: 0.73rem; font-weight: 700;
+            padding: 0.28rem 0.75rem; border-radius: 50px; width: fit-content;
+        }
+
+        /* grade display */
+        .grade-display {
+            display: flex; align-items: center; gap: 1.5rem;
+            background: #fffbeb; border-radius: 14px; padding: 1rem 1.25rem;
+        }
+        .grade-number {
+            font-size: 2.8rem; font-weight: 700; color: #f59e0b; line-height: 1;
+        }
+        .grade-info { flex: 1; }
+        .grade-info strong { display: block; font-size: 0.9rem; color: #1f2937; }
+        .grade-info span   { font-size: 0.78rem; color: #6b7280; }
+
+        /* scores mini grid */
+        .cert-scores {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;
+        }
+        .score-row {
+            background: #f8fafc; border-radius: 10px; padding: 0.55rem 0.75rem;
+        }
+        .score-row span:first-child {
+            display: block; font-size: 0.7rem; color: #9ca3af;
+            text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;
+        }
+        .score-row strong { font-size: 1rem; color: #f59e0b; }
+        .score-row.highlight { background: #fef3c7; grid-column: span 2; }
+        .score-row.highlight strong { color: #92400e; font-size: 1.1rem; }
+
+        /* cert modules list */
+        .modules-list {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;
+            margin-top: 0.25rem;
+        }
+        .module-item {
+            display: flex; align-items: center; gap: 0.45rem;
+            font-size: 0.8rem; color: #555;
+        }
+        .module-item i { color: #f59e0b; font-size: 0.65rem; flex-shrink: 0; }
+
+        /* accreditation logos row */
+        .accred-row {
+            display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+            padding: 0.75rem 0 0;
+            border-top: 1px solid #f3f4f6;
+        }
+        .accred-row span {
+            font-size: 0.72rem; font-weight: 700; color: #6b7280;
+            background: #f3f4f6; padding: 0.2rem 0.6rem; border-radius: 6px;
+        }
+        .accred-row .label { background: none; padding: 0; color: #9ca3af; font-weight: 400; }
+
+        /* diploma highlights */
+        .diploma-highlights {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 0.75rem; margin-top: 0.5rem;
+        }
+        .dh-item {
+            text-align: center; background: #fffbeb;
+            border-radius: 12px; padding: 0.9rem 0.5rem;
+        }
+        .dh-item strong { display: block; font-size: 1.6rem; font-weight: 700; color: #f59e0b; }
+        .dh-item span   { font-size: 0.72rem; color: #6b7280; line-height: 1.3; }
+
+        .cert-validity { font-size: 0.8rem; color: #6b7280; display: flex; align-items: center; gap: 0.4rem; }
+        .cert-validity i { color: #f59e0b; }
+
+        /* competency bars */
+        .competency-list { display: flex; flex-direction: column; gap: 1rem; }
+        .comp-label {
+            display: flex; justify-content: space-between;
+            font-size: 0.87rem; font-weight: 600; color: #374151; margin-bottom: 0.35rem;
+        }
+        .comp-bar { height: 8px; background: #e5e7eb; border-radius: 99px; overflow: hidden; }
+        .comp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #f59e0b, #fbbf24);
+            border-radius: 99px; transition: width 1s ease;
+        }
+
+        /* impact card accent */
+        .oil-page .impact-card { border-top: 3px solid #f59e0b; }
+        .oil-page .impact-card h3 { color: #92400e; }
+
+        .oil-page .cta {
+            background: linear-gradient(135deg, #78350f 0%, #92400e 50%, #b45309 100%);
+        }
+
+        @media (max-width: 600px) {
+            .modules-list { grid-template-columns: 1fr; }
+            .cert-scores  { grid-template-columns: 1fr; }
+            .score-row.highlight { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body class="oil-page">
+
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-logo"><h2>Aurora Simão</h2></div>
+            <ul class="nav-menu">
+                <li><a href="../../index.html">Início</a></li>
+                <li><a href="../about.html">Sobre</a></li>
+                <li><a href="../contact.html">Contato</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </nav>
+    </header>
+
+    <!-- ── HERO ─────────────────────────────────────────── -->
+    <section class="hero page-hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow"><i class="fas fa-oil-well"></i> &nbsp;Perfuração e Produção de Petróleo</p>
+                <h1>Oil &amp; Gas<br><span class="highlight">Formação Técnica</span></h1>
+                <p class="hero-bio">
+                    Técnica certificada em Perfuração e Produção Petrolífera pelo <strong>Instituto Politécnico do Soyo</strong> (nota final 15/20, PAP 20/20) e Operadora de Produção de Petróleo pela <strong>MB EPRO / ANPG</strong> (nota 17/20). Formação abrangente em operações de campo, segurança industrial, SCADA e gestão de equipamentos.
+                </p>
+                <div class="hero-tags">
+                    <span><i class="fas fa-graduation-cap"></i> Técnica em Perfuração</span>
+                    <span><i class="fas fa-certificate"></i> Operadora de Produção</span>
+                    <span><i class="fas fa-shield-alt"></i> HSE &amp; Segurança</span>
+                    <span><i class="fas fa-industry"></i> ANPG Credenciado</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#certifications" class="btn btn-primary">Ver Formação</a>
+                    <a href="../contact.html" class="btn btn-secondary">Contato</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-card">
+                    <div class="profile-img">
+                        <img src="../../aurora.jpeg" alt="Aurora Simão" class="profile-photo">
+                    </div>
+                    <div class="floating-icons">
+                        <i class="fas fa-oil-well"></i>
+                        <i class="fas fa-industry"></i>
+                        <i class="fas fa-shield-alt"></i>
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── SUBNAV ─────────────────────────────────────── -->
+    <nav class="page-subnav">
+        <div class="container">
+            <ul>
+                <li><a href="#summary">Resumo</a></li>
+                <li><a href="#certifications">Formação</a></li>
+                <li><a href="#skills">Competências</a></li>
+                <li><a href="#projects">Projecto</a></li>
+                <li><a href="#impact">Resultados</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ── RESUMO ─────────────────────────────────────── -->
+    <section class="experience reveal" id="summary">
+        <div class="container">
+            <h2 class="section-title">Resumo</h2>
+            <p class="section-lead">
+                Profissional com formação técnica sólida em perfuração e produção de petróleo, complementada por certificação recente como Operadora de Produção pela <strong>MB EPRO</strong>, empresa credenciada pela <strong>ANPG</strong> (Agência Nacional de Petróleo, Gás e Biocombustíveis de Angola). Domínio de operações de campo, sistemas de produção, segurança em plataformas e monitoramento SCADA — com foco em operações seguras, eficientes e conformes.
+            </p>
+            <div class="overview-grid" style="max-width:900px;margin:0 auto;">
+                <div class="overview-stat">
+                    <h3 style="color:#f59e0b;">2 Certificações</h3>
+                    <p>Formação técnica (2020–2024) + Operadora de Produção (Out 2025)</p>
+                </div>
+                <div class="overview-stat">
+                    <h3 style="color:#f59e0b;">PAP 20/20</h3>
+                    <p>Nota máxima na Prova de Aptidão Profissional do curso técnico</p>
+                </div>
+                <div class="overview-stat">
+                    <h3 style="color:#f59e0b;">ANPG</h3>
+                    <p>Formação credenciada pela Agência Nacional de Petróleo de Angola</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FORMAÇÃO / CERTIFICAÇÕES ───────────────────── -->
+    <section class="projects reveal" id="certifications">
+        <div class="container">
+            <h2 class="section-title">Formação &amp; Certificações</h2>
+            <p class="section-lead">
+                Duas certificações complementares que cobrem desde os fundamentos técnicos da perfuração até à operação prática de sistemas de produção.
+            </p>
+            <div class="cert-grid">
+
+                <!-- Técnico Politécnico -->
+                <div class="cert-card">
+                    <div class="cert-header">
+                        <div class="cert-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div>
+                            <h3>Técnico de Perfuração e Produção Petrolífera</h3>
+                            <p>Instituto Politécnico do Soyo · República de Angola<br>Ministério da Educação · 2020–2024</p>
+                        </div>
+                    </div>
+                    <div class="cert-badge"><i class="fas fa-check-circle"></i> II Ciclo Técnico-Profissional</div>
+
+                    <div class="grade-display">
+                        <div class="grade-number">15</div>
+                        <div class="grade-info">
+                            <strong>Nota Final do Curso</strong>
+                            <span>Classificação Final = (4×MA + PAP + NEC) / 6</span>
+                        </div>
+                    </div>
+
+                    <div class="cert-scores">
+                        <div class="score-row">
+                            <span>Média Anual (MA)</span>
+                            <strong>14/20</strong>
+                        </div>
+                        <div class="score-row">
+                            <span>Estágio Curricular</span>
+                            <strong>18/20</strong>
+                        </div>
+                        <div class="score-row highlight">
+                            <span>Prova de Aptidão Profissional (PAP)</span>
+                            <strong>20/20 — Máximo</strong>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p style="font-size:0.78rem;color:#9ca3af;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.5rem;">Destaques por disciplina</p>
+                        <div class="diploma-highlights">
+                            <div class="dh-item"><strong>17</strong><span>Tecnologia de Produção</span></div>
+                            <div class="dh-item"><strong>18</strong><span>Trabalhos de Campo</span></div>
+                            <div class="dh-item"><strong>16</strong><span>Geologia Geral</span></div>
+                            <div class="dh-item"><strong>15</strong><span>Tecnologia de Perfuração</span></div>
+                            <div class="dh-item"><strong>15</strong><span>Tecnologia Geral de Máquinas</span></div>
+                            <div class="dh-item"><strong>14</strong><span>Seg. e Meio Ambiente</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MB EPRO Operadora -->
+                <div class="cert-card">
+                    <div class="cert-header">
+                        <div class="cert-icon"><i class="fas fa-industry"></i></div>
+                        <div>
+                            <h3>Operador de Produção de Petróleo</h3>
+                            <p>MB EPRO — Treinamento, Consultoria e Manpower Oil &amp; Gas<br>27–31 Out 2025 · 15h · Luanda</p>
+                        </div>
+                    </div>
+                    <div class="cert-badge"><i class="fas fa-check-circle"></i> ANPG Licença Nº 5002215020/CL-ANPG/2025</div>
+
+                    <div class="grade-display">
+                        <div class="grade-number">17</div>
+                        <div class="grade-info">
+                            <strong>Nota Final</strong>
+                            <span>Emitido 03 de Novembro de 2025</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p style="font-size:0.78rem;color:#9ca3af;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.5rem;">Conteúdo programático (7 módulos)</p>
+                        <div class="modules-list">
+                            <div class="module-item"><i class="fas fa-check"></i> Produção de Petróleo e Gás</div>
+                            <div class="module-item"><i class="fas fa-check"></i> Equipamentos e Sistemas</div>
+                            <div class="module-item"><i class="fas fa-check"></i> Operação de Sistemas</div>
+                            <div class="module-item"><i class="fas fa-check"></i> Segurança e Gestão de Riscos</div>
+                            <div class="module-item"><i class="fas fa-check"></i> Manutenção de Equipamentos</div>
+                            <div class="module-item"><i class="fas fa-check"></i> SCADA e Controlo de Processos</div>
+                            <div class="module-item"><i class="fas fa-check"></i> Casos Práticos e Simulações</div>
+                        </div>
+                    </div>
+
+                    <div class="accred-row">
+                        <span class="label">Credenciação:</span>
+                        <span>ANPG</span>
+                        <span>IWCF</span>
+                        <span>HIDRAUSEA</span>
+                        <span>CCIAM</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── COMPETÊNCIAS ───────────────────────────────── -->
+    <section class="about reveal" id="skills">
+        <div class="container">
+            <h2 class="section-title">Competências Técnicas</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="skill-category" style="margin-bottom:1.5rem;">
+                        <h3 style="color:#f59e0b;"><i class="fas fa-oil-well"></i> Perfuração &amp; Produção</h3>
+                        <ul>
+                            <li>Leitura e interpretação de PFD e P&amp;ID</li>
+                            <li>Tecnologia de perfuração e completação de poços</li>
+                            <li>Plataformas offshore e unidades de processamento primário</li>
+                            <li>Sistemas de separação óleo/gás/água</li>
+                            <li>Equipamentos de bombeamento e compressão</li>
+                            <li>Monitoramento de parâmetros operacionais</li>
+                            <li>SCADA — supervisão e aquisição de dados</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 style="color:#f59e0b;"><i class="fas fa-shield-alt"></i> HSE &amp; Operações</h3>
+                        <ul>
+                            <li>Segurança em plataformas e ambientes industriais</li>
+                            <li>Identificação e mitigação de riscos operacionais</li>
+                            <li>Procedimentos de emergência e evacuação</li>
+                            <li>Compliance com normas ambientais e regulatórias</li>
+                            <li>Manutenção preventiva, preditiva e corretiva</li>
+                            <li>Geologia aplicada — estudo de jazidas</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="skill-category">
+                        <h3 style="color:#f59e0b;"><i class="fas fa-chart-bar"></i> Nível de Competência</h3>
+                        <div class="competency-list" style="margin-top:1rem;" id="oil-competencies">
+                            <div class="comp-item">
+                                <div class="comp-label"><span>Tecnologia de Produção</span><span>85%</span></div>
+                                <div class="comp-bar"><div class="comp-fill" data-width="85"></div></div>
+                            </div>
+                            <div class="comp-item">
+                                <div class="comp-label"><span>Segurança Industrial (HSE)</span><span>88%</span></div>
+                                <div class="comp-bar"><div class="comp-fill" data-width="88"></div></div>
+                            </div>
+                            <div class="comp-item">
+                                <div class="comp-label"><span>Leitura de PFD / P&amp;ID</span><span>80%</span></div>
+                                <div class="comp-bar"><div class="comp-fill" data-width="80"></div></div>
+                            </div>
+                            <div class="comp-item">
+                                <div class="comp-label"><span>Operação de Sistemas</span><span>82%</span></div>
+                                <div class="comp-bar"><div class="comp-fill" data-width="82"></div></div>
+                            </div>
+                            <div class="comp-item">
+                                <div class="comp-label"><span>Geologia de Jazidas</span><span>78%</span></div>
+                                <div class="comp-bar"><div class="comp-fill" data-width="78"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PROJETO ────────────────────────────────────── -->
+    <section class="projects reveal" id="projects">
+        <div class="container">
+            <h2 class="section-title">Projecto Técnico</h2>
+            <div class="projects-grid">
+
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #92400e, #b45309);">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Estudo sobre Dual Gradient Drilling (DGD) em Poços de Águas Profundas</h3>
+                        <p>Projecto tecnológico de fim de curso — redesenho de um poço de águas profundas perfurado convencionalmente, aplicando a metodologia DGD para melhorar o controlo de pressão e a segurança operacional.</p>
+                        <ul class="project-details">
+                            <li>Redimensionamento de poço offshore usando metodologia DGD</li>
+                            <li>Avaliação das vantagens operacionais vs. perfuração convencional</li>
+                            <li>Gestão aprimorada da janela poro-pressão / pressão de fractura</li>
+                            <li>Melhoria das margens de segurança na perfuração em águas profundas</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span>Análise Técnica</span>
+                            <span>Perfuração DGD</span>
+                            <span>Águas Profundas</span>
+                            <span>Segurança Operacional</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #b45309, #d97706);">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Calculadora de Produção de Petróleo</h3>
+                        <p>Aplicação web que combina conhecimento técnico de Oil &amp; Gas com programação — calculadora interactiva para análise de dados de produção e visualização de parâmetros de poços.</p>
+                        <ul class="project-details">
+                            <li>Cálculo de taxas de produção e análise de declínio</li>
+                            <li>Visualização gráfica de dados operacionais</li>
+                            <li>Interface técnica pensada para operadores de campo</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span>JavaScript</span>
+                            <span>HTML / CSS</span>
+                            <span>Chart.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Aurorasimao" class="btn-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── RESULTADOS ─────────────────────────────────── -->
+    <section class="experience reveal" id="impact">
+        <div class="container">
+            <h2 class="section-title">Resultados e Diferenciais</h2>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <h3>PAP 20/20</h3>
+                    <p>Nota máxima na Prova de Aptidão Profissional — evidência de domínio técnico completo ao fim do curso de 4 anos.</p>
+                </div>
+                <div class="impact-card">
+                    <h3>Nota 17 em Operações</h3>
+                    <p>Formação recente (Out 2025) como Operadora de Produção, com nota 17/20 numa formação credenciada pela ANPG e IWCF.</p>
+                </div>
+                <div class="impact-card">
+                    <h3>Visão Tech + Campo</h3>
+                    <p>Única combinação de background técnico em Oil &amp; Gas com formação em engenharia de software — capaz de criar ferramentas digitais para ambientes industriais.</p>
+                </div>
+                <div class="impact-card">
+                    <h3>Trabalho de Campo 18/20</h3>
+                    <p>Nota de destaque no componente prático — com aplicação real de conhecimentos em contexto de campo petrolífero.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CTA ────────────────────────────────────────── -->
+    <section class="cta reveal">
+        <div class="container">
+            <h2>Técnica formada. Pronta para o campo.</h2>
+            <p>Com duas certificações em Oil &amp; Gas e a capacidade adicional de desenvolver ferramentas digitais para operações industriais, ofereço um perfil único para empresas que operam na interseção entre indústria e tecnologia.</p>
+            <div class="cta-buttons">
+                <a href="../contact.html" class="btn btn-primary">Falar comigo</a>
+                <a href="../../index.html#areas" class="btn btn-secondary">Ver outras áreas</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text"><p>&copy; 2025 Aurora Simão.</p></div>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Aurorasimao4" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:simaoaurora8@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script>
+        // Animate competency bars when skills section enters viewport
+        const skillsSection = document.getElementById('skills');
+        const fills = document.querySelectorAll('#oil-competencies .comp-fill');
+
+        fills.forEach(f => { f.style.width = '0%'; });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    fills.forEach((fill, i) => {
+                        setTimeout(() => {
+                            fill.style.width = fill.getAttribute('data-width') + '%';
+                        }, i * 120);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.25 });
+
+        if (skillsSection) observer.observe(skillsSection);
+    </script>
+</body>
+</html>

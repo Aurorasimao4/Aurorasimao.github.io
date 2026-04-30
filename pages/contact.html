@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | Aurora Simão</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* contact page extras */
+        .contact-method {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #555;
+            padding: 1rem 1.25rem;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .contact-method:hover {
+            transform: translateX(6px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .contact-method.cm-email  { border-left-color: #ec4899; }
+        .contact-method.cm-phone  { border-left-color: #10b981; }
+        .contact-method.cm-li     { border-left-color: #0077b5; }
+        .contact-method.cm-gh     { border-left-color: #333;    }
+
+        .contact-method i {
+            font-size: 1.3rem;
+            width: 42px; height: 42px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+        .cm-email i  { background: #fce7f3; color: #ec4899; }
+        .cm-phone i  { background: #d1fae5; color: #10b981; }
+        .cm-li    i  { background: #dbeafe; color: #0077b5; }
+        .cm-gh    i  { background: #f3f4f6; color: #333; }
+
+        .cm-text { display: flex; flex-direction: column; }
+        .cm-text strong { font-size: 0.8rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+        .cm-text span   { font-size: 0.97rem; color: #374151; font-weight: 500; }
+
+        /* availability strip */
+        .availability {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 14px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        .availability-dot {
+            width: 10px; height: 10px;
+            background: #10b981;
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 3px rgba(16,185,129,0.25);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 0 3px rgba(16,185,129,0.25); }
+            50%       { box-shadow: 0 0 0 6px rgba(16,185,129,0.1); }
+        }
+        .availability p { font-size: 0.9rem; color: #065f46; font-weight: 500; margin: 0; }
+
+        /* areas quick links */
+        .area-quick {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+        .aq-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.75rem 1rem;
+            background: white;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #374151;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            transition: transform 0.25s ease;
+        }
+        .aq-item:hover { transform: translateY(-3px); }
+        .aq-item i { font-size: 1rem; }
+        .aq-sw  i { color: #ec4899; }
+        .aq-oil i { color: #f59e0b; }
+        .aq-ndt i { color: #10b981; }
+        .aq-pm  i { color: #6366f1; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-logo"><h2>Aurora Simão</h2></div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Início</a></li>
+                <li><a href="about.html">Sobre</a></li>
+                <li><a href="contact.html" class="active">Contato</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </nav>
+    </header>
+
+    <!-- ── HERO ─────────────────────────────────────────── -->
+    <section class="hero page-hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow"><i class="fas fa-envelope"></i> &nbsp;Vamos falar</p>
+                <h1>Contato</h1>
+                <p class="hero-bio">
+                    Estou disponível para oportunidades em <strong>engenharia de software</strong>, colaborações técnicas, projectos com impacto social — ou simplesmente uma boa conversa sobre tecnologia.
+                </p>
+                <div class="hero-tags">
+                    <span><i class="fas fa-briefcase"></i> Aberta a oportunidades</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Luanda, Angola</span>
+                    <span><i class="fas fa-globe"></i> Disponível remotamente</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Enviar mensagem</a>
+                    <a href="about.html" class="btn btn-secondary">Ver perfil</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-card">
+                    <div class="profile-img">
+                        <img src="../aurora.jpeg" alt="Aurora Simão" class="profile-photo">
+                    </div>
+                    <div class="floating-icons">
+                        <i class="fas fa-envelope"></i>
+                        <i class="fas fa-handshake"></i>
+                        <i class="fas fa-code"></i>
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CONTACT SECTION ───────────────────────────── -->
+    <section class="contact reveal" id="contact">
+        <div class="container">
+            <h2 class="section-title">Vamos Conversar?</h2>
+            <div class="contact-content">
+
+                <!-- LEFT: info + métodos -->
+                <div class="contact-info">
+                    <div class="availability">
+                        <div class="availability-dot"></div>
+                        <p>Disponível para novas oportunidades — respondo normalmente em menos de 24h.</p>
+                    </div>
+
+                    <h3>Contactos Directos</h3>
+                    <div class="contact-methods" style="gap:0.75rem;display:flex;flex-direction:column;margin:1.25rem 0 2rem;">
+                        <a href="mailto:simaoaurora8@gmail.com" class="contact-method cm-email">
+                            <i class="fas fa-envelope"></i>
+                            <div class="cm-text">
+                                <strong>Email</strong>
+                                <span>simaoaurora8@gmail.com</span>
+                            </div>
+                        </a>
+                        <a href="tel:+244926534478" class="contact-method cm-phone">
+                            <i class="fas fa-phone"></i>
+                            <div class="cm-text">
+                                <strong>Telefone / WhatsApp</strong>
+                                <span>+244 926 534 478</span>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/aurora-simão-00623a2a9" target="_blank" class="contact-method cm-li">
+                            <i class="fab fa-linkedin"></i>
+                            <div class="cm-text">
+                                <strong>LinkedIn</strong>
+                                <span>Aurora Simão</span>
+                            </div>
+                        </a>
+                        <a href="https://github.com/Aurorasimao4" target="_blank" class="contact-method cm-gh">
+                            <i class="fab fa-github"></i>
+                            <div class="cm-text">
+                                <strong>GitHub</strong>
+                                <span>github.com/Aurorasimao4</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <h3 style="font-size:1rem;color:#374151;margin-bottom:0.75rem;">Ver por área</h3>
+                    <div class="area-quick">
+                        <a href="areas/software.html" class="aq-item aq-sw"><i class="fas fa-laptop-code"></i> Software</a>
+                        <a href="areas/oil-gas.html"  class="aq-item aq-oil"><i class="fas fa-oil-well"></i> Oil &amp; Gas</a>
+                        <a href="areas/ndt.html"      class="aq-item aq-ndt"><i class="fas fa-search-plus"></i> NDT</a>
+                        <a href="areas/project-management.html" class="aq-item aq-pm"><i class="fas fa-project-diagram"></i> Gestão</a>
+                    </div>
+                </div>
+
+                <!-- RIGHT: form -->
+                <form class="contact-form">
+                    <p style="color:#6b7280;font-size:0.9rem;margin-bottom:1.5rem;line-height:1.6;">
+                        Preferes enviar um e-mail directamente? Usa o formulário abaixo — recebo a mensagem na minha caixa de entrada.
+                    </p>
+                    <div class="form-group">
+                        <input type="text" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Seu e-mail" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Assunto (ex: Oportunidade em Software, Colaboração, ...)" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Descreva brevemente o que tem em mente..." rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;">
+                        <i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Enviar Mensagem
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text"><p>&copy; 2025 Aurora Simão.</p></div>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Aurorasimao4" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:simaoaurora8@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

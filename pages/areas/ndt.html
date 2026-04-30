@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDT Inspection | Aurora Simão</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ── NDT page — estilos específicos ── */
+        .hero.page-hero {
+            background:
+                radial-gradient(circle at top right, rgba(16,185,129,0.22), transparent 45%),
+                linear-gradient(135deg, #065f46 0%, #047857 50%, #059669 100%);
+        }
+
+        /* certifications highlight grid */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        .cert-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+            border-left: 5px solid #10b981;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cert-card:hover { transform: translateY(-5px); box-shadow: 0 16px 36px rgba(0,0,0,0.13); }
+
+        .cert-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cert-icon {
+            width: 52px; height: 52px;
+            background: #d1fae5;
+            border-radius: 13px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+            color: #10b981;
+            flex-shrink: 0;
+        }
+
+        .cert-header h3 { font-size: 1.2rem; color: #1f2937; margin: 0; }
+        .cert-header p  { font-size: 0.82rem; color: #6b7280; margin: 0; }
+
+        .cert-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #d1fae5;
+            color: #065f46;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            width: fit-content;
+        }
+
+        .cert-scores {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        .score-row {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 0.6rem 0.8rem;
+        }
+        .score-row span:first-child {
+            display: block;
+            font-size: 0.72rem;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 600;
+        }
+        .score-row strong {
+            font-size: 1.05rem;
+            color: #10b981;
+        }
+
+        .score-row.composite {
+            grid-column: span 2;
+            background: #d1fae5;
+        }
+        .score-row.composite strong { color: #065f46; font-size: 1.2rem; }
+
+        .cert-validity {
+            font-size: 0.82rem;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .cert-validity i { color: #10b981; }
+
+        /* NDT skill tags */
+        .project-tech span {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        /* override section title underline colour for NDT */
+        .ndt-page .section-title::after {
+            background: linear-gradient(90deg, #10b981, #34d399);
+        }
+
+        /* impact cards — NDT colour */
+        .ndt-page .impact-card {
+            border-top: 3px solid #10b981;
+        }
+
+        .ndt-page .impact-card h3 { color: #065f46; }
+
+        /* subnav NDT */
+        .ndt-page .page-subnav a       { background: #d1fae5; color: #065f46; }
+        .ndt-page .page-subnav a:hover { background: #10b981; color: white; }
+
+        /* cta bottom */
+        .ndt-page .cta {
+            background: linear-gradient(135deg, #065f46 0%, #047857 50%, #059669 100%);
+        }
+
+        /* competency bar */
+        .competency-list { display: flex; flex-direction: column; gap: 1rem; }
+
+        .comp-item { }
+        .comp-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.4rem;
+        }
+        .comp-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 99px;
+            overflow: hidden;
+        }
+        .comp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #34d399);
+            border-radius: 99px;
+            transition: width 1s ease;
+        }
+
+        @media (max-width: 600px) {
+            .cert-scores { grid-template-columns: 1fr; }
+            .score-row.composite { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body class="ndt-page">
+
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-logo"><h2>Aurora Simão</h2></div>
+            <ul class="nav-menu">
+                <li><a href="../../index.html">Início</a></li>
+                <li><a href="../about.html">Sobre</a></li>
+                <li><a href="../contact.html">Contato</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </nav>
+    </header>
+
+    <!-- ── HERO ─────────────────────────────────────────── -->
+    <section class="hero page-hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow"><i class="fas fa-search-plus"></i> &nbsp;Ensaios Não Destrutivos</p>
+                <h1>NDT Inspection<br><span class="highlight">Level II Certified</span></h1>
+                <p class="hero-bio">
+                    Certificada MT Level II e PT Level II pela norma <strong>SNT TC-1A 2024 (ASNT)</strong>, com classificações acima do mínimo exigido em todas as categorias. Formação realizada em Angola, com foco em controlo de qualidade, detecção de defeitos e conformidade em ambientes industriais críticos.
+                </p>
+                <div class="hero-tags">
+                    <span><i class="fas fa-certificate"></i> MT Level II</span>
+                    <span><i class="fas fa-certificate"></i> PT Level II</span>
+                    <span><i class="fas fa-shield-alt"></i> SNT TC-1A 2024</span>
+                    <span><i class="fas fa-calendar-check"></i> Válido até 2031</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#certifications" class="btn btn-primary">Ver Certificações</a>
+                    <a href="../contact.html" class="btn btn-secondary">Contato</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-card">
+                    <div class="profile-img">
+                        <img src="../../aurora.jpeg" alt="Aurora Simão" class="profile-photo">
+                    </div>
+                    <div class="floating-icons">
+                        <i class="fas fa-microscope"></i>
+                        <i class="fas fa-industry"></i>
+                        <i class="fas fa-clipboard-check"></i>
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── SUBNAV ─────────────────────────────────────── -->
+    <nav class="page-subnav">
+        <div class="container">
+            <ul>
+                <li><a href="#summary">Resumo</a></li>
+                <li><a href="#certifications">Certificações</a></li>
+                <li><a href="#skills">Competências</a></li>
+                <li><a href="#impact">Resultados</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ── RESUMO ─────────────────────────────────────── -->
+    <section class="experience reveal" id="summary">
+        <div class="container">
+            <h2 class="section-title">Resumo</h2>
+            <p class="section-lead">
+                Técnica certificada em Ensaios Não Destrutivos, com dupla certificação Level II (MT + PT) pela <strong>Advanced Institute of Nondestructive Testing &amp; Training</strong> (ISO 9001:2015), seguindo a norma internacional ASNT SNT TC-1A 2024. Obtive classificações consistentemente acima do mínimo exigido — nota composta de <strong>88.1% em MT</strong> e <strong>88.6% em PT</strong> — demonstrando domínio técnico tanto na teoria quanto na prática.
+            </p>
+            <div class="overview-grid" style="max-width:900px;margin:0 auto;">
+                <div class="overview-stat">
+                    <h3 style="color:#10b981;">2 Certificações</h3>
+                    <p>MT Level II + PT Level II activas e válidas até Janeiro 2031</p>
+                </div>
+                <div class="overview-stat">
+                    <h3 style="color:#10b981;">88%+ médio</h3>
+                    <p>Nota composta acima do mínimo exigido nas duas certificações</p>
+                </div>
+                <div class="overview-stat">
+                    <h3 style="color:#10b981;">ASNT</h3>
+                    <p>Norma SNT TC-1A 2024 — padrão internacional reconhecido globalmente</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CERTIFICAÇÕES ──────────────────────────────── -->
+    <section class="projects reveal" id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certificações</h2>
+            <p class="section-lead">
+                Certificações emitidas pelo <strong>Advanced Institute of Nondestructive Testing &amp; Training</strong>, acreditado pelo Ministério das MSME do Governo da Índia (ISO 9001:2015), com examinador ASNT Level III.
+            </p>
+            <div class="cert-grid">
+
+                <!-- MT -->
+                <div class="cert-card">
+                    <div class="cert-header">
+                        <div class="cert-icon"><i class="fas fa-magnet"></i></div>
+                        <div>
+                            <h3>Magnetic Particle Testing</h3>
+                            <p>MT · Level II · Nº FEA40BC</p>
+                        </div>
+                    </div>
+                    <div class="cert-badge"><i class="fas fa-check-circle"></i> Certificado activo</div>
+                    <div class="cert-scores">
+                        <div class="score-row">
+                            <span>Exame Geral</span>
+                            <strong>86.7%</strong>
+                        </div>
+                        <div class="score-row">
+                            <span>Exame Específico</span>
+                            <strong>87.5%</strong>
+                        </div>
+                        <div class="score-row">
+                            <span>Exame Prático</span>
+                            <strong>90.0%</strong>
+                        </div>
+                        <div class="score-row composite">
+                            <span>Nota Composta Final</span>
+                            <strong>88.1%</strong>
+                        </div>
+                    </div>
+                    <div class="cert-validity">
+                        <i class="fas fa-calendar-alt"></i>
+                        Emitido 13 Jan 2026 · Válido até 12 Jan 2031
+                    </div>
+                </div>
+
+                <!-- PT -->
+                <div class="cert-card">
+                    <div class="cert-header">
+                        <div class="cert-icon"><i class="fas fa-tint"></i></div>
+                        <div>
+                            <h3>Liquid Penetrant Testing</h3>
+                            <p>PT · Level II · Nº FEA40BC</p>
+                        </div>
+                    </div>
+                    <div class="cert-badge"><i class="fas fa-check-circle"></i> Certificado activo</div>
+                    <div class="cert-scores">
+                        <div class="score-row">
+                            <span>Exame Geral</span>
+                            <strong>88.3%</strong>
+                        </div>
+                        <div class="score-row">
+                            <span>Exame Específico</span>
+                            <strong>87.5%</strong>
+                        </div>
+                        <div class="score-row">
+                            <span>Exame Prático</span>
+                            <strong>90.0%</strong>
+                        </div>
+                        <div class="score-row composite">
+                            <span>Nota Composta Final</span>
+                            <strong>88.6%</strong>
+                        </div>
+                    </div>
+                    <div class="cert-validity">
+                        <i class="fas fa-calendar-alt"></i>
+                        Emitido 17 Jan 2026 · Válido até 16 Jan 2031
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── COMPETÊNCIAS ───────────────────────────────── -->
+    <section class="about reveal" id="skills">
+        <div class="container">
+            <h2 class="section-title">Competências e Ferramentas</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="skill-category" style="margin-bottom:1.5rem;">
+                        <h3 style="color:#10b981;"><i class="fas fa-industry"></i> Métodos de Inspecção</h3>
+                        <ul>
+                            <li>Magnetic Particle Testing (MT) — Level II</li>
+                            <li>Liquid Penetrant Testing (PT) — Level II</li>
+                            <li>Detecção e caracterização de defeitos superficiais</li>
+                            <li>Inspecção em soldaduras, peças fundidas e forjadas</li>
+                            <li>Preparação de superfícies para ensaio</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 style="color:#10b981;"><i class="fas fa-clipboard-list"></i> Qualidade e Conformidade</h3>
+                        <ul>
+                            <li>Norma SNT TC-1A 2024 (ASNT)</li>
+                            <li>Elaboração de relatórios técnicos de inspecção</li>
+                            <li>Registo e rastreabilidade de não-conformidades</li>
+                            <li>Segurança operacional em ambientes industriais</li>
+                            <li>Suporte a auditorias e manutenção preventiva</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="skill-category">
+                        <h3 style="color:#10b981;"><i class="fas fa-chart-bar"></i> Nível de Competência</h3>
+                        <div class="competency-list" style="margin-top:1rem;">
+                            <div class="comp-item">
+                                <div class="comp-label"><span>Magnetic Particle Testing</span><span>88%</span></div>
+                                <div class="comp-bar"><div class="comp-fill" style="width:88%;"></div></div>
+                            </div>
+                            <div class="comp-item">
+                                <div class="comp-label"><span>Liquid Penetrant Testing</span><span>89%</span></div>
+                                <div class="comp-bar"><div class="comp-fill" style="width:89%;"></div></div>
+                            </div>
+                            <div class="comp-item">
+                                <div class="comp-label"><span>Relatórios Técnicos</span><span>85%</span></div>
+                                <div class="comp-bar"><div class="comp-fill" style="width:85%;"></div></div>
+                            </div>
+                            <div class="comp-item">
+                                <div class="comp-label"><span>Normas ASNT / Qualidade</span><span>87%</span></div>
+                                <div class="comp-bar"><div class="comp-fill" style="width:87%;"></div></div>
+                            </div>
+                            <div class="comp-item">
+                                <div class="comp-label"><span>Segurança Industrial</span><span>90%</span></div>
+                                <div class="comp-bar"><div class="comp-fill" style="width:90%;"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── RESULTADOS ─────────────────────────────────── -->
+    <section class="experience reveal" id="impact">
+        <div class="container">
+            <h2 class="section-title">Resultados e Impacto</h2>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <h3>Certificação Dupla</h3>
+                    <p>Obtive MT Level II e PT Level II em Janeiro 2026, ambas com nota composta acima de 88% — acima do mínimo exigido de 80%.</p>
+                </div>
+                <div class="impact-card">
+                    <h3>Excelência Prática</h3>
+                    <p>Nota de 90.0% no exame prático nas duas certificações — o componente mais exigente, avaliado directamente por examinador ASNT Level III.</p>
+                </div>
+                <div class="impact-card">
+                    <h3>Validade Internacional</h3>
+                    <p>Certificações reconhecidas internacionalmente pela norma ASNT SNT TC-1A 2024, válidas até 2031 e aplicáveis em contextos industriais globais.</p>
+                </div>
+                <div class="impact-card">
+                    <h3>Visão Cruzada</h3>
+                    <p>A combinação de NDT com background em Oil &amp; Gas e Software permite identificar problemas de qualidade com maior contexto operacional e propor soluções mais eficientes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CTA ────────────────────────────────────────── -->
+    <section class="cta reveal">
+        <div class="container">
+            <h2>Pronta para inspecções que fazem a diferença.</h2>
+            <p>Com dupla certificação Level II activa e background em ambientes industriais críticos, ofereço rigor técnico e atenção ao detalhe em cada inspecção.</p>
+            <div class="cta-buttons">
+                <a href="../contact.html" class="btn btn-primary">Falar comigo</a>
+                <a href="../../index.html#areas" class="btn btn-secondary">Ver outras áreas</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text"><p>&copy; 2025 Aurora Simão.</p></div>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.linkedin.com/in/aurora-simão-00623a2a9" aria-label="LinkedIn"></a>
+                    <a href="https://github.com/Aurorasimao4" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:simaoaurora8@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script>
+        // Animate competency bars on scroll
+        const bars = document.querySelectorAll('.comp-fill');
+        const barObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.style.width;
+                }
+            });
+        }, { threshold: 0.3 });
+
+        bars.forEach(bar => {
+            const finalWidth = bar.style.width;
+            bar.style.width = '0%';
+            setTimeout(() => barObserver.observe(bar), 100);
+            barObserver.observe(bar);
+        });
+
+        // Override reveal for bars
+        const skillsSection = document.getElementById('skills');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    bars.forEach((bar, i) => {
+                        const targets = ['88%','89%','85%','87%','90%'];
+                        setTimeout(() => { bar.style.width = targets[i]; }, i * 120);
+                    });
+                }
+            });
+        }, { threshold: 0.2 });
+        if (skillsSection) skillObserver.observe(skillsSection);
+    </script>
+</body>
+</html>
